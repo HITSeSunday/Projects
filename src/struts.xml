@@ -10,10 +10,18 @@
 		<result name="error">/loginfailed.jsp</result>
 	</action>
 </package>
-<package name="jdbc" extends="struts-default" namespace="/">
+<package name="jdbc" extends="struts-default" namespace="/jdbc">
         
         <action name="all" class="action.ReserveAction" method="All">
             <result name="SUCCESS">/page.jsp</result>
+            <result name="ERROR">/error.jsp</result>
+        </action>
+         <action name="alls" class="action.ReserveAction" method="All">
+            <result name="SUCCESS">/page_student.jsp</result>
+            <result name="ERROR">/error.jsp</result>
+        </action>
+         <action name="del" class="action.ReserveAction" method="DeleteReserve">
+            <result name="SUCCESS">/del_success.jsp</result>
             <result name="ERROR">/error.jsp</result>
         </action>
 </package>

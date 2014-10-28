@@ -7,9 +7,9 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<html>
-	<base href="<%=basePath%>">
 
+<html>
+<base href="<%=basePath%>">
   <div align="center">
   	<font size=10>
   		All Reserves
@@ -23,7 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<td>Place</td>
   			<td>StartTime</td>
   			<td>EndTime</td>
-  			<td>Reserveid</td>
   		</tr>
   	
   		<s:iterator value="List" var="Reverse" status="sta">
@@ -33,12 +32,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<td><s:property value="#Reverse.Place"/></td>
   				<td><s:property value="#Reverse.StartTime"/></td>
   				<td><s:property value="#Reverse.EndTime"/></td>
-  				<td><s:property value="#Reverse.Reserveid"/></td>
   			</tr>
   		</s:iterator>
   		
   	</table>
-  	<a href=database_admin.jsp>返回</a><br>
+  	<a href=database_student.jsp>返回</a><br>
   	</font>
   	</ul>
   </div>

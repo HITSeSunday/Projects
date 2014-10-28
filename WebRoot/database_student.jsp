@@ -8,11 +8,10 @@
 <body>
 	<center>
 
-		<s:form action="all" method="post">
+		<s:form action="jdbc/alls" method="post">
 			显示所有
 			<s:submit value="所有图书" />
 		</s:form>
 	</center>
-	sfsdfs
 </body>
 </html>

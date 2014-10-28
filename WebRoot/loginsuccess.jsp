@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     Login Success! <br>
-    <a href="database_home.jsp">go to database</a>
+    <a href="database_admin.jsp">go to database</a>
 	
   </body>
 </html>

@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'LoginFailed.jsp' starting page</title>
+    <title>LoginFailed</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -26,8 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <s:fielderror fieldName="name" theme="simple"/>
     <br>
-    <s:property value="errors.name[0]"/>
-    <s:debug></s:debug>
+    <!--<s:property value="errors.name[0]"/>-->
     <a href="login.jsp">retry</a>
 	
   </body>

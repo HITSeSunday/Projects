@@ -1,7 +1,9 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbUtils {
@@ -33,10 +35,12 @@ public class DbUtils {
 
 	public int delete(String sql) {
 		int result = 0;
+		System.out.println(sql+"\nasdfad\n");
 		connection = getConnection();
 		try {
 			statement = connection.createStatement();
 			result = statement.executeUpdate(sql);
+			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -72,4 +76,5 @@ public class DbUtils {
 		Connection connt = db.getConne();
 		return connt;
 	}
+	
 }

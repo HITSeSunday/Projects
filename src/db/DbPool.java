@@ -20,6 +20,7 @@ public class DbPool {
 			System.out.println("error to db");
 		}
 	}
+	
 	public ResultSet query(String sql){
 		ResultSet rs=null;
 		if(conne==null)getConn();
@@ -32,5 +33,6 @@ public class DbPool {
 		}
 		return rs;
 	}
+	
 	
 }
