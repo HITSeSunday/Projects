@@ -6,6 +6,13 @@ public class Reserve {
 	private String TeacherName;
 	private String ClassName;
 	private String Place;
+	private int reserveid;
+	public int getReserveid() {
+		return reserveid;
+	}
+	public void setReserveid(int reserveid) {
+		this.reserveid = reserveid;
+	}
 	public void Print(){
 		System.out.println(TeacherName+" "+ClassName+" "+Place+" "+StartTime+" "+EndTime);
 	}
