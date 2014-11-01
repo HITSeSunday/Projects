@@ -5,23 +5,48 @@
 <constant name="struts.i18n.encoding" value="GBK"/>
 
 <package name="login" extends="struts-default" namespace="/login">
-	<action name="login" class="action.LoginAction" method="login">
-		<result name="success">/loginsuccess.jsp</result>
-		<result name="error">/loginfailed.jsp</result>
+	<action name="teacherlogin" class="webAction.LoginAction" method="TeacherLogin">
+		<result name="SUCCESS">/teacherloginsuccess.jsp</result>
+		<result name="ERROR">/teacherloginfailed.jsp</result>
+		<result name="PWD">/teacherwrongpass.jsp</result>
 	</action>
+	
+	
+	<action name="studentlogin" class="webAction.LoginAction" method="StudentLogin">
+		<result name="SUCCESS">/studentloginsuccess.jsp</result>
+		<result name="ERROR">/loginfailed.jsp</result>
+		<result name="PWD">/studentwrongpass.jsp</result>
+	</action>
+	
+	<action name="teacherregister" class="webAction.RegAction" method="TeaReg">
+		<result name="SUCCESS">/teacherlogin.jsp</result>
+		<result name="EXIT">/teacherregisterexistingid.jsp</result>
+		<result name="WRONGPASS">/teacherregisterwrongpass.jsp</result>
+	</action>
+	
+	<action name="studentregister" class="webAction.RegAction" method="StuReg">
+		<result name="SUCCESS">/studentlogin.jsp</result>
+		<result name="EXIT">/studentregisterexistingid.jsp</result>
+		<result name="WRONGPASS">/studentregisterwrongpass.jsp</result>
+	</action>
+	
 </package>
 <package name="jdbc" extends="struts-default" namespace="/jdbc">
         
-        <action name="all" class="action.ReserveAction" method="All">
+        <action name="all" class="webAction.ReserveAction" method="All">
             <result name="SUCCESS">/page.jsp</result>
             <result name="ERROR">/error.jsp</result>
         </action>
-         <action name="alls" class="action.ReserveAction" method="All">
+         <action name="alls" class="webAction.ReserveAction" method="All">
             <result name="SUCCESS">/page_student.jsp</result>
             <result name="ERROR">/error.jsp</result>
         </action>
-         <action name="del" class="action.ReserveAction" method="DeleteReserve">
+         <action name="delreserve" class="webAction.ReserveAction" method="DeleteReserve">
             <result name="SUCCESS">/del_success.jsp</result>
+            <result name="ERROR">/error.jsp</result>
+        </action>
+        <action name="addreserve" class="webAction.ReserveAction" method="AddReserve">
+            <result name="SUCCESS">/add_success.jsp</result>
             <result name="ERROR">/error.jsp</result>
         </action>
 </package>

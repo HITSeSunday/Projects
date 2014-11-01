@@ -21,10 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  
+  <center>
   <body>
-    <form action="jdbc/del" method="DeleteReserve">
-   		 Input reserve id<input type="text" name="reserveid"></input>
+    <form action="jdbc/delreserve" method="DeleteReserve">
+   		 Input reserve id<input type="text" name="reserveId"></input>
     	<input type="submit" value="OK"></input>
+    </form>
   </body>
+  </center>
 </html>

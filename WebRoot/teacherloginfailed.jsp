@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'loginsuccess.jsp' starting page</title>
+    <title>LoginFailed</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -21,10 +22,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  
+  <center>
   <body>
-    Login Success! <br>
-    <a href="database_admin.jsp">go to database</a>
+    <s:fielderror fieldName="name" theme="simple"/>
+    <br>
+    <!--<s:property value="errors.name[0]"/>-->
+    <a href="teacherlogin.jsp">retry</a>
 	
   </body>
+  </center>
 </html>

@@ -23,7 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <center>
   	错误
     <a href=index.jsp>返回</a><br>
+    </center>
   </body>
 </html>

@@ -10,7 +10,7 @@
 
 		<s:form action="jdbc/alls" method="post">
 			显示所有
-			<s:submit value="所有图书" />
+			<s:submit value="所有预约" />
 		</s:form>
 	</center>
 </body>

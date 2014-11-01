@@ -1,15 +1,14 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'del_success.jsp' starting page</title>
+    <title>Admin login</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,12 +18,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
+
   </head>
   <center>
   <body>
-    Success!<br>
-    <a href=database_admin.jsp>back</a><br>
+      <form action="login/studentlogin" method="StudentLogin">
+      	Input username£º<input type="text" name="username"></input><br/>
+   		Input password£º<input type="password" name="password"></input><br/>
+    	<input type="submit" value="OK"></input>
+    </form>
+   <!--<a href="register.jsp">register</a>
+  -->
   </body>
   </center>
 </html>

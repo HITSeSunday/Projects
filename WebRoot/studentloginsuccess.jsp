@@ -1,14 +1,15 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>Admin login</title>
+    <title>My JSP 'studentloginsuccess.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -18,14 +19,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
   </head>
-  
+  <center>
   <body>
-      <form action="login/login" method="login">
-   		 Input password��<input type="password" name="password"></input>
-    	<input type="submit" value="OK"></input>
-    </form>
-	
+  	登陆成功<br>
+    <a href=database_student.jsp>继续</a><br>
   </body>
+  </center>
 </html>

@@ -1,0 +1,101 @@
+package webAction;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import db.DbUtils;
+
+public class LoginAction extends ActionSupport {
+	private String password;
+	private String username;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String TeacherLogin() {
+		ResultSet rs = null;
+		String result = "";
+		Connection connection = DbUtils.getConnection();
+		try {
+			Statement state = connection.createStatement();
+			String sql = "select password from user_teacher where username=\""
+					+ username +"\"";
+			System.out.println(sql);
+			rs = state.executeQuery(sql);
+			System.out.println("25");
+			if (rs.next()) {
+				System.out.println("53");
+				String input = String.valueOf(rs.getString(1));
+				System.out.println("input: "+input);
+				System.out.println("pass: "+password+"  "+input);
+				if ((password.equals(input))==true) {
+					System.out.println("SU: "+password+" "+input);
+					return "SUCCESS";
+				} else {
+					return  "PWD";
+				}
+			} else {
+				return "ERROR";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("67!!");
+			e.printStackTrace();
+			return "ERROR";
+		}
+//		System.out.println(result);
+//		return result;
+	}
+	
+	
+	
+	public String StudentLogin() {
+		ResultSet rs = null;
+		String result = "";
+		Connection connection = DbUtils.getConnection();
+		try {
+			Statement state = connection.createStatement();
+			String sql = "select password from user_student where username=\""
+					+ username +"\"";
+			System.out.println(sql);
+			rs = state.executeQuery(sql);
+			System.out.println("25");
+			if (rs.next()) {
+				System.out.println("53");
+				String input = String.valueOf(rs.getString(1));
+				System.out.println("input: "+input);
+				System.out.println("pass: "+password+"  "+input);
+				if (password.equals(input)==true) {
+					System.out.println("SU: "+password+" "+input);
+					return "SUCCESS";
+				} else {
+					return  "PWD";
+				}
+			} else {
+				return "ERROR";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("67!!");
+			e.printStackTrace();
+			return "ERROR";
+		}
+	}
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+}

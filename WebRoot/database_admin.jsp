@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<center>
 		<s:form action="jdbc/all" method="post">
 			显示所有
-			<s:submit value="所有图书" />
+			<s:submit value="所有预约" />
 		</s:form>
 <input type="button" onclick="window.location.href='Addreserve.jsp'" value="增加记录">
 <input type="button" onclick="window.location.href='Deletereserve.jsp'" value="删除记录">

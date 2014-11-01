@@ -1,5 +1,6 @@
 package db;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,20 +33,16 @@ public class DbUtils {
 
 		return resultset;
 	}
-
-	public int delete(String sql) {
+	public int Add(String sql) {
 		int result = 0;
-		System.out.println(sql+"\nasdfad\n");
 		connection = getConnection();
 		try {
 			statement = connection.createStatement();
 			result = statement.executeUpdate(sql);
-			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			close();
 		}
+
 		return result;
 	}
 
@@ -70,11 +67,45 @@ public class DbUtils {
 		}
 	}
 
-	private Connection getConnection() {
+	public static Connection getConnection() {
 		DbPool db = new DbPool();
 		db.getConn();
 		Connection connt = db.getConne();
 		return connt;
 	}
 	
+	public static PreparedStatement prepare(Connection conn, String sql) {
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ps;
+	}
+	public static void close(Statement stmt) {
+		try {
+			stmt.close();
+			stmt = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void close(ResultSet rs) {
+		try {
+			rs.close();
+			rs = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+public static void close(Connection conn) {
+		
+		try {
+			conn.close();
+			conn = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

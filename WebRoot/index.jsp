@@ -20,9 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    Welcome to my Book Database! <br>
-   <a href="login.jsp">login </a>to continue<br/>
+  <center>
+    Welcome to Reserve system <br><br/>
+   Teacher?<a href="teacherlogin.jsp">login </a>or<a href="teacherregister.jsp"> register</a><br/>
    <br/>
-   Student? click <a href="database_student.jsp">here </a>view teachers' timetable<br/>
+   Student?<a href="studentlogin.jsp">login </a>or<a href="studentregister.jsp"> register</a><br/>
+  </center>
   </body>
 </html>

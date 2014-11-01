@@ -1,5 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>LoginFailed</title>
+    <title>My JSP 'studentregisterexistingid.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -22,12 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  
+  <center>
   <body>
-    <s:fielderror fieldName="name" theme="simple"/>
-    <br>
-    <!--<s:property value="errors.name[0]"/>-->
-    <a href="login.jsp">retry</a>
-	
+    Existing id!
+    <a href=studentregister.jsp>back</a>
   </body>
+  </center>
 </html>

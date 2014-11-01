@@ -23,15 +23,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<td>Place</td>
   			<td>StartTime</td>
   			<td>EndTime</td>
+  			<td>Reserve</td>
   		</tr>
   	
   		<s:iterator value="List" var="Reverse" status="sta">
   			<tr>
   				<td><s:property value="#Reverse.TeacherName"/></td>
   				<td><s:property value="#Reverse.ClassName"/></td>
-  				<td><s:property value="#Reverse.Place"/></td>
+  				<td><s:property value="#Reverse.PlaceName"/></td>
   				<td><s:property value="#Reverse.StartTime"/></td>
   				<td><s:property value="#Reverse.EndTime"/></td>
+  				<td><a href="index.jsp">Reserve</a>
   			</tr>
   		</s:iterator>
   		
