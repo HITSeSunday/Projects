@@ -1,53 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-<constant name="struts.devMode" value = "true"/>
-<constant name="struts.i18n.encoding" value="GBK"/>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
 
-<package name="login" extends="struts-default" namespace="/login">
-	<action name="teacherlogin" class="webAction.LoginAction" method="TeacherLogin">
-		<result name="SUCCESS">/teacherloginsuccess.jsp</result>
-		<result name="ERROR">/teacherloginfailed.jsp</result>
-		<result name="PWD">/teacherwrongpass.jsp</result>
-	</action>
-	
-	
-	<action name="studentlogin" class="webAction.LoginAction" method="StudentLogin">
-		<result name="SUCCESS">/studentloginsuccess.jsp</result>
-		<result name="ERROR">/loginfailed.jsp</result>
-		<result name="PWD">/studentwrongpass.jsp</result>
-	</action>
-	
-	<action name="teacherregister" class="webAction.RegAction" method="TeaReg">
-		<result name="SUCCESS">/teacherlogin.jsp</result>
-		<result name="EXIT">/teacherregisterexistingid.jsp</result>
-		<result name="WRONGPASS">/teacherregisterwrongpass.jsp</result>
-	</action>
-	
-	<action name="studentregister" class="webAction.RegAction" method="StuReg">
-		<result name="SUCCESS">/studentlogin.jsp</result>
-		<result name="EXIT">/studentregisterexistingid.jsp</result>
-		<result name="WRONGPASS">/studentregisterwrongpass.jsp</result>
-	</action>
-	
-</package>
-<package name="jdbc" extends="struts-default" namespace="/jdbc">
-        
-        <action name="all" class="webAction.ReserveAction" method="All">
-            <result name="SUCCESS">/page.jsp</result>
-            <result name="ERROR">/error.jsp</result>
-        </action>
-         <action name="alls" class="webAction.ReserveAction" method="All">
-            <result name="SUCCESS">/page_student.jsp</result>
-            <result name="ERROR">/error.jsp</result>
-        </action>
-         <action name="delreserve" class="webAction.ReserveAction" method="DeleteReserve">
-            <result name="SUCCESS">/del_success.jsp</result>
-            <result name="ERROR">/error.jsp</result>
-        </action>
-        <action name="addreserve" class="webAction.ReserveAction" method="AddReserve">
-            <result name="SUCCESS">/add_success.jsp</result>
-            <result name="ERROR">/error.jsp</result>
-        </action>
-</package>
+	<package name="login" extends="struts-default" namespace="/web/login">
+		<action name="teacherlogin" class="webAction.LoginAction"
+			method="TeacherLogin">
+			<result name="SUCCESS">/teacherloginsuccess.jsp</result>
+			<result name="ERROR">/teacherloginfailed.jsp</result>
+			<result name="PWD">/teacherwrongpass.jsp</result>
+		</action>
+
+
+		<action name="studentlogin" class="webAction.LoginAction"
+			method="StudentLogin">
+			<result name="SUCCESS">/studentloginsuccess.jsp</result>
+			<result name="ERROR">/loginfailed.jsp</result>
+			<result name="PWD">/studentwrongpass.jsp</result>
+		</action>
+
+		<action name="teacherregister" class="webAction.RegAction"
+			method="TeaReg">
+			<result name="SUCCESS">/teacherlogin.jsp</result>
+			<result name="EXIT">/teacherregisterexistingid.jsp</result>
+			<result name="WRONGPASS">/teacherregisterwrongpass.jsp</result>
+		</action>
+
+		<action name="studentregister" class="webAction.RegAction"
+			method="StuReg">
+			<result name="SUCCESS">/studentlogin.jsp</result>
+			<result name="INPUT">/studentregisterexistingid.jsp</result>
+			<result name="EXIT">/studentregisterexistingid.jsp</result>
+			<result name="WRONGPASS">/studentregisterwrongpass.jsp</result>
+		</action>
+
+	</package>
+	<package name="jdbc" extends="struts-default" namespace="/jdbc">
+
+		<action name="all" class="webAction.ReserveAction" method="All">
+			<result name="SUCCESS">/page.jsp</result>
+			<result name="ERROR">/error.jsp</result>
+		</action>
+		<action name="alls" class="webAction.ReserveAction" method="All">
+			<result name="SUCCESS">/page_student.jsp</result>
+			<result name="ERROR">/error.jsp</result>
+		</action>
+		<action name="delreserve" class="webAction.ReserveAction"
+			method="DeleteReserve">
+			<result name="SUCCESS">/success.jsp</result>
+			<result name="ERROR">/error.jsp</result>
+		</action>
+		<action name="addreserve" class="webAction.ReserveAction"
+			method="AddReserve">
+			<result name="SUCCESS">/success.jsp</result>
+			<result name="ERROR">/error.jsp</result>
+		</action>
+		<action name="reservereserve" class="webAction.ReserveAction" method="ReserveReserve">
+			<result name="HAS">/has.jsp</result>
+			<result name="ERROR">/error.jsp</result>
+			<result name="SUCCESS">/success.jsp</result>
+		</action>
+		<action name="cancelreserve" class="webAction.ReserveAction" method="CancelReserve">
+			<result name="SUCCESS">/success.jsp</result>
+		</action>	
+		<action name="viewbydate" class="webAction.ReserveAction" method="day">
+			<result name="SUCCESS">/web/daydivides.jsp</result>
+		</action>
+		<action name="viewbyteacher" class="webAction.ReserveAction" method="Tea">
+			<result name="SUCCESS">/web/daydividet.jsp</result>
+		</action>
+		
+		
+		</package>
 </struts>    

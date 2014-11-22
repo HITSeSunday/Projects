@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,14 +21,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  <center>
   <body>
-        <form action="login/studentregister" method="StuReg">
-      	Input username:<input type="text" name="username"></input><br/>
-   		Input password:<input type="password" name="pass1"></input><br/>
-   		Input password agin:<input type="password" name="pass2"></input><br/>
+  <center>
+  
+        <form action="web/login/studentregister" >
+      	用户名:<input type="text" name="username"></input><br/>
+      	姓名:<input type="text" name="studentname"></input><br/>
+      	学号:<input type="text" name="studentnumber"></input><br/>
+   		密码:<input type="password" name="pass1"></input>
+   		重复:<input type="password" name="pass2"></input><br/>
     	<input type="submit" value="OK"></input>
     </form>
-  </body>
+ 
   </center>
+   </body>
 </html>

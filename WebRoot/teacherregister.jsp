@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'register.jsp' starting page</title>
+    <title>教师注册</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,10 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <center>
   <body>
-        <form action="login/teacherregister" method="TeaReg">
-      	Input username:<input type="text" name="username"></input><br/>
-   		Input password:<input type="password" name="pass1"></input><br/>
-   		Input password agin:<input type="password" name="pass2"></input><br/>
+        <form action="web/login/teacherregister" method="TeaReg">
+      	用户名：<input type="text" name="username"></input><br/>
+   		密码：<input type="password" name="pass1"></input><br/>
+   		再次输入：<input type="password" name="pass2"></input><br/>
     	<input type="submit" value="OK"></input>
     </form>
   </body>

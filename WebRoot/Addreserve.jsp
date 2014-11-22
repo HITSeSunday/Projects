@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,webAction.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,14 +23,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<form action="jdbc/addreserve" method="AddReserve">
-        <input type="text" name="teacherName">teachername<br>
-   		<input type="text" name="className">classname<br>
-   		<input type="text" name="placeName">placename<br>
+    	<% 
+  		LoginAction t=new LoginAction();
+  		String teachername=(String)session.getAttribute("currenttea");
+  		int tt=t.getCurrentTea(teachername);
+  	%>
+  	<form action="jdbc/addreserve" >
+
+           	
+        <input type="text" name="teacherName" value="<%=teachername%>" style="visibility:hidden">
+    	<input type="text" name="teacherId" value="<%=tt%>" style="visibility:hidden">
    		<input type="text" name="startTime">starttime<br>
    		<input type="text" name="endTime">endtime<br>
-   		<input type="text" name="reserveId">reserveid<br>
-    	<input type="submit" value="OK">
+   		<input type="text" name="Date">date<br>
+    	<input type="submit" value="确定" >
+
     </form>
   </body>
 </html>

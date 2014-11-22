@@ -23,7 +23,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <center>
   <body>
   	登陆成功<br>
-    <a href=database_student.jsp>继续</a><br>
+  	<%
+  	String s=request.getParameter("username");
+  	%>
+  	 <%
+  	 	session.setAttribute("currentstu",s);
+  	 %>
+    <a href=web/2s.jsp>继续</a><br>
   </body>
   </center>
 </html>

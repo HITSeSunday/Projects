@@ -19,23 +19,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<table border="1">
   		<tr>
   			<td>TeacherName</td>
-  			<td>ClassName</td>
-  			<td>Place</td>
   			<td>StartTime</td>
   			<td>EndTime</td>
-  			<td>Reserveid</td>
   			<td>Delete</td>
   		</tr>
+  	session
   	
   		<s:iterator value="List" var="Reverse" status="sta">
   			<tr>
   				<td><s:property value="#Reverse.TeacherName"/></td>
-  				<td><s:property value="#Reverse.ClassName"/></td>
-  				<td><s:property value="#Reverse.PlaceName"/></td>
   				<td><s:property value="#Reverse.StartTime"/></td>
   				<td><s:property value="#Reverse.EndTime"/></td>
-  				<td><s:property value="#Reverse.ReserveId"/></td>
-  				<td><a href="jdbc/delreserve?reserveId=<s:property value="#Reverse.ReserveId"/>">delete</a><td/>
+  				
+  				<td><a href="jdbc/delreserve?reserveid=<s:property value="#Reverse.ReserveId"/>">delete</a><td/>
   			</tr>
   		</s:iterator>
   		

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,9 +22,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <center>
     Welcome to Reserve system <br><br/>
-   Teacher?<a href="teacherlogin.jsp">login </a>or<a href="teacherregister.jsp"> register</a><br/>
+   Teacher?<a href="web/s_login.html">login </a>or<a href="teacherregister.jsp"> register</a><br/>
    <br/>
    Student?<a href="studentlogin.jsp">login </a>or<a href="studentregister.jsp"> register</a><br/>
   </center>
+  <%!
+      int i=0;
+%>
+<%
+      i++;
+%>
+<p>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+您是第<%=i%>个访问本站的用户。
   </body>
 </html>

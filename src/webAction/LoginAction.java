@@ -98,4 +98,39 @@ public class LoginAction extends ActionSupport {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public int getCurrentStu(String name){
+		int ans=0;
+		String sql="select stuid from user_student where username="+"\""+name+"\"";
+		
+		ResultSet rs=null;
+		System.out.println(sql);
+		rs=DbUtils.getInstance().Query(sql);
+		try{
+			while(rs.next()){
+				int tmp=rs.getInt(1);
+				ans=tmp;
+				break;
+			}
+		}catch(Exception e){
+			ans=-1;
+		}
+		return ans;
+	}
+	public int getCurrentTea(String name){
+		int ans=0;
+		String sql="select teacherid from user_teacher where username=\""+name+"\"";
+		ResultSet rs=null;
+		rs=DbUtils.getInstance().Query(sql);
+		try{
+			while(rs.next()){
+				int tmp=rs.getInt(1);
+				ans=tmp;
+				break;
+			}
+		}catch(Exception e){
+			ans=-1;
+		}
+		return ans;
+	}
 }

@@ -45,7 +45,18 @@ public class DbUtils {
 
 		return result;
 	}
-
+	public int Update(String sql) {
+		int result = 0;
+		connection = getConnection();
+		try {
+			statement = connection.createStatement();
+			result = statement.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	private void close() {
 		if (statement != null) {
 			try {

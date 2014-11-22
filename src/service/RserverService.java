@@ -16,16 +16,18 @@ public class RserverService {
 	public static void AddReserve(Reserve reserveToAdd){
 		Connection connection = DbUtils.getConnection();
 		Reserve newrs = reserveToAdd;
-		String sql = "insert into reserve values (?,?,?,?,?,?)";
+		String sql = "insert into reserve (`TeacherName`, `StartTime`, `EndTime`, `Date`) values  (?,?,?,?)";
 		PreparedStatement statement =  DbUtils.prepare(connection, sql);
 		try {
 			statement.setString(1, reserveToAdd.getTeacherName());
-			//System.out.print(reserveToAdd.getTeacherName()+"!!!!!!!!!!");
-			statement.setString(2, reserveToAdd.getClassName());
-			statement.setString(3, reserveToAdd.getPlaceName());
-			statement.setLong(4, reserveToAdd.getStartTime());
-			statement.setLong(5, reserveToAdd.getEndTime());
-			statement.setInt(6, reserveToAdd.getReserveId());
+			System.out.print(reserveToAdd.getTeacherName()+"!!!!!!!!!!");
+			statement.setString(2, reserveToAdd.getStartTime());
+			System.out.print(reserveToAdd.getStartTime()+"!!!!!!!!!!");
+			statement.setString(3, reserveToAdd.getEndTime());
+			System.out.print(reserveToAdd.getEndTime()+"!!!!!!!!!!");
+			statement.setString(4, reserveToAdd.getDate());
+			System.out.print(reserveToAdd.getDate()+"!!!!!!!!!!");
+			System.out.println(sql);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

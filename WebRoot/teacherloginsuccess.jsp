@@ -23,8 +23,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <center>
   <body>
-    Login Success! <br>
-    <a href="database_admin.jsp">go to database</a>
+    welcome  <br>
+    <%
+    	String s = request.getParameter("username");
+    	session.setAttribute("currenttea",s);
+    %>
+    <%=s %>
+    <a href="web/2t.jsp">go to database</a>
 	
   </body>
   </center>

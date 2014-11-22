@@ -13,6 +13,15 @@ public class RegAction extends ActionSupport {
 	private String pass1;
 	private String pass2;
 	private String username;
+	private String teacherName;
+public String getTeacherName() {
+		return teacherName;
+	}
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+	//	private int TotStuId=0;
+//	private int TotTeaId=0;
 	public String getPass1() {
 		return pass1;
 	}
@@ -22,6 +31,18 @@ public class RegAction extends ActionSupport {
 	public String getPass2() {
 		return pass2;
 	}
+//	public int getTotStuId() {
+//		return TotStuId;
+//	}
+//	public void setTotStuId(int totStuId) {
+//		TotStuId = totStuId;
+//	}
+//	public int getTotTeaId() {
+//		return TotTeaId;
+//	}
+//	public void setTotTeaId(int totTeaId) {
+//		TotTeaId = totTeaId;
+//	}
 	public void setPass2(String pass2) {
 		this.pass2 = pass2;
 	}
@@ -31,6 +52,21 @@ public class RegAction extends ActionSupport {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getStudentname() {
+		return studentname;
+	}
+	public void setStudentname(String studentname) {
+		this.studentname = studentname;
+	}
+	public int getStudentnumber() {
+		return studentnumber;
+	}
+	public void setStudentnumber(int studentnumber) {
+		this.studentnumber = studentnumber;
+	}
+	private String studentname;
+	private int studentnumber;
+
 	public String StuReg(){
 		ResultSet rs = null;
 		System.out.println("REG "+username+" "+pass1+" "+pass2);
@@ -39,14 +75,10 @@ public class RegAction extends ActionSupport {
 			Statement state = connection.createStatement();
 			String sql = "select username from user_student where username=\""
 					+ username +"\"";
-			System.out.println(sql);
 			rs = state.executeQuery(sql);
-			System.out.println("63!!");
 			if(rs.next())return "EXIT";
-			System.out.println("64!!");
-			System.out.println(pass1+"  "+pass2);
 			if(!pass1.equals(pass2))return "WRONGPASS";
-			sql = "insert into user_student values(\""+username+"\","+"\""+pass1+"\""+")";
+			sql = "insert into user_student values(\""+studentnumber+"\","+"\""+username+"\","+"\""+pass1+"\","+"\""+studentname+"\""+")";
 			System.out.println(sql);
 			int rss=state.executeUpdate(sql);
 			System.out.println("RSS: "+rss);
@@ -65,12 +97,9 @@ public class RegAction extends ActionSupport {
 					+ username +"\"";
 			System.out.println(sql);
 			rs = state.executeQuery(sql);
-			System.out.println("63!!");
 			if(rs.next())return "EXIT";
-			System.out.println("64!!");
-			System.out.println(pass1+"  "+pass2);
 			if(!pass1.equals(pass2))return "WRONGPASS";
-			sql = "insert into user_teacher values(\""+username+"\","+"\""+pass1+"\""+")";
+			sql = "insert into user_teacher values(\""+null+"\","+"\""+teacherName+"\","+"\""+username+"\","+"\""+pass1+"\""+")";
 			System.out.println(sql);
 			int rss=state.executeUpdate(sql);
 			System.out.println("RSS: "+rss);
