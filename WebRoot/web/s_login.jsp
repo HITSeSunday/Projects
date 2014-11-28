@@ -37,6 +37,7 @@ body
 				<br/>
 				<br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="登陆" >
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="注册" >
 					</form>
 				</div>
 					

@@ -70,7 +70,7 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 
 	public String All() {
 		// System.out.println("!!");
-		String sql = "select * from reserve";
+		String sql = "select * from reserve where ss=0";
 		ResultSet rs = null;
 
 		rs = DbUtils.getInstance().Query(sql);
