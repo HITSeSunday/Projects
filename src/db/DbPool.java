@@ -15,7 +15,8 @@ public class DbPool {
 			Context envContext = (Context)initContext.lookup("java:comp/env");
 			DataSource dSource = (DataSource) envContext.lookup("jdbc/dbtom");
 			conne = dSource.getConnection();
-			System.out.println("success to db");
+			String sb ="哈哈";
+			System.out.println("success to db "+sb);
 		}catch (Exception e){
 			System.out.println("error to db");
 		}

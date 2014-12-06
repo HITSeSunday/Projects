@@ -77,6 +77,7 @@ public class LoginAction extends ActionSupport {
 				System.out.println("pass: "+password+"  "+input);
 				if (password.equals(input)==true) {
 					System.out.println("SU: "+password+" "+input);
+					
 					return "SUCCESS";
 				} else {
 					return  "PWD";

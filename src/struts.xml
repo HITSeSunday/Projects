@@ -3,8 +3,9 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.locale" value="UTF-8" />
 
-	<package name="login" extends="struts-default" namespace="/web/login">
+	<package name="login" extends="struts-default" namespace="/web2/login">
 		<action name="teacherlogin" class="webAction.LoginAction"
 			method="TeacherLogin">
 			<result name="SUCCESS">/teacherloginsuccess.jsp</result>
@@ -15,7 +16,7 @@
 
 		<action name="studentlogin" class="webAction.LoginAction"
 			method="StudentLogin">
-			<result name="SUCCESS">/studentloginsuccess.jsp</result>
+			<result name="SUCCESS">web2/login_soft.html</result>
 			<result name="ERROR">/loginfailed.jsp</result>
 			<result name="PWD">/studentwrongpass.jsp</result>
 		</action>

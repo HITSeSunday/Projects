@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <center>
   
-        <form action="web/login/studentregister" >
+        <form action="web2/login/studentregister" >
       	用户名:<input type="text" name="username"></input><br/>
       	姓名:<input type="text" name="studentname"></input><br/>
       	学号:<input type="text" name="studentnumber"></input><br/>

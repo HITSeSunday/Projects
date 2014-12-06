@@ -1,0 +1,9 @@
+<html>
+
+<frameset cols="500,*">
+
+  <frame src="./index.html">
+  <frame src="./daydivide" name="showframe">
+</frameset>
+
+</html>
