@@ -1,12 +1,9 @@
-
 package webAction;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-//int mainint main
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -80,6 +77,7 @@ public class LoginAction extends ActionSupport {
 				System.out.println("pass: "+password+"  "+input);
 				if (password.equals(input)==true) {
 					System.out.println("SU: "+password+" "+input);
+					
 					return "SUCCESS";
 				} else {
 					return  "PWD";
