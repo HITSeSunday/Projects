@@ -5,7 +5,7 @@
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<constant name="struts.locale" value="UTF-8" />
 
-	<package name="login" extends="struts-default" namespace="/web2/login">
+	<package name="login" extends="struts-default" namespace="/login">
 		<action name="teacherlogin" class="webAction.LoginAction"
 			method="TeacherLogin">
 			<result name="SUCCESS">/teacherloginsuccess.jsp</result>
@@ -16,9 +16,9 @@
 
 		<action name="studentlogin" class="webAction.LoginAction"
 			method="StudentLogin">
-			<result name="SUCCESS">web2/login_soft.html</result>
-			<result name="ERROR">/loginfailed.jsp</result>
-			<result name="PWD">/studentwrongpass.jsp</result>
+			<result name="SUCCESS" type="redirect">/web2/index.jsp</result>
+			<result name="ERROR" type="redirect">/web2/s_login_error.jsp</result>
+			<result name="PWD" type="redirect">/web2/s_login_error.jsp</result>
 		</action>
 
 		<action name="teacherregister" class="webAction.RegAction"
@@ -30,7 +30,7 @@
 
 		<action name="studentregister" class="webAction.RegAction"
 			method="StuReg">
-			<result name="SUCCESS">/studentlogin.jsp</result>
+			<result name="SUCCESS" type="redirect">/web2/s_login.jsp</result>
 			<result name="INPUT">/studentregisterexistingid.jsp</result>
 			<result name="EXIT">/studentregisterexistingid.jsp</result>
 			<result name="WRONGPASS">/studentregisterwrongpass.jsp</result>
@@ -70,6 +70,9 @@
 		</action>
 		<action name="viewbyteacher" class="webAction.ReserveAction" method="Tea">
 			<result name="SUCCESS">/web/daydividet.jsp</result>
+		</action>
+		<action name="TeacherShow" class="webAction.TeacherShow" method="Days">
+			<result name="SUCCESS">/success.jsp</result>
 		</action>
 		
 		

@@ -4,15 +4,22 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<html lang="en"> <!--<![endif]-->
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 
 <!-- BEGIN HEAD -->
+
 
 <head>
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Login Options - Login Form 2</title>
+	<title>登录</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -54,7 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- BEGIN BODY -->
 
-<body class="login">
+<body class="login" >
+	
 
 	<!-- BEGIN LOGO -->
 
@@ -72,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN LOGIN FORM -->
 
-		<form class="form-vertical login-form" action="index.html">
+		<form class="form-vertical login-form" method="post" action="<%=basePath %>login/studentlogin">
 
 			<h3 class="form-title">Login to your account</h3>
 
@@ -106,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">密码</label>
+				<label class="control-label visible-ie8 visible-ie9">Password</label>
 
 				<div class="controls">
 
@@ -170,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN FORGOT PASSWORD FORM -->
 
-		<form class="form-vertical forget-form" action="index.html">
+		<form class="form-vertical forget-form" action="">
 
 			<h3 class="">Forget Password ?</h3>
 
@@ -214,12 +222,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN REGISTRATION FORM -->
 
-		<form class="form-vertical register-form" action="index.html">
+		<form class="form-vertical register-form" action="<%=basePath %>login/studentregister" method="post">
 
 			<h3 class="">Sign Up</h3>
 
 			<p>Enter your account details below:</p>
-
+			
 			<div class="control-group">
 
 				<label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -230,7 +238,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="真实姓名" name="username"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username"/>
+
+					</div>
+
+				</div>
+
+			</div>
+			
+			<div class="control-group">
+
+				<label class="control-label visible-ie8 visible-ie9">Username</label>
+
+				<div class="controls">
+
+					<div class="input-icon left">
+
+						<i class="icon-user"></i>
+
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="真实姓名" name="studentname"/>
 
 					</div>
 
@@ -239,7 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Username</label>
+				<label class="control-label visible-ie8 visible-ie9">Stunumber</label>
 
 				<div class="controls">
 
@@ -247,7 +273,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="学号" name="username"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="学号" name="studentnumber"/>
 
 					</div>
 
@@ -265,7 +291,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-lock"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="Password" name="password"/>
+						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="Password" name="pass1"/>
 
 					</div>
 
@@ -283,7 +309,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-ok"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Re-type Your Password" name="rpassword"/>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Re-type Your Password" name="pass2"/>
 
 					</div>
 
@@ -409,12 +435,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- END PAGE LEVEL SCRIPTS --> 
 
-	<script>
+	 <script>
 
 		jQuery(document).ready(function() {     
 
 		  App.init();
-
 		  Login.init();
 
 		});

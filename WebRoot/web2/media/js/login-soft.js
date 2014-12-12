@@ -35,7 +35,7 @@ var Login = function () {
 
 	            highlight: function (element) { // hightlight error inputs
 	                $(element)
-	                    .closest('.control-group').addClass('error'); // set error class to the control group
+	                    .closest('.control-group').addClass('errord'); // set error class to the control group
 	            },
 
 	            success: function (label) {
@@ -47,15 +47,13 @@ var Login = function () {
 	                error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
 	            },
 
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
-	            }
+	          
 	        });
 
 	        $('.login-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.login-form').validate().form()) {
-	                    window.location.href = "index.html";
+	                    
 	                }
 	                return false;
 	            }
@@ -97,19 +95,10 @@ var Login = function () {
 	                error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
 	            },
 
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
-	            }
+	            
 	        });
 
-	        $('.forget-form input').keypress(function (e) {
-	            if (e.which == 13) {
-	                if ($('.forget-form').validate().form()) {
-	                    window.location.href = "index.html";
-	                }
-	                return false;
-	            }
-	        });
+	       
 
 	        jQuery('#forget-password').click(function () {
 	            jQuery('.login-form').hide();
@@ -151,7 +140,7 @@ var Login = function () {
 	                }
 	            },
 
-	            invalidHandler: function (event, validator) { //display error alert on form submit   
+	            invalidHandler: function (event, validator) { //display error alert on form    
 
 	            },
 
@@ -173,9 +162,7 @@ var Login = function () {
 	                }
 	            },
 
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
-	            }
+	           
 	        });
 
 	        jQuery('#register-btn').click(function () {

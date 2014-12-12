@@ -1,0 +1,33 @@
+﻿Merge branch 'beta' of https://github.com/HITSeSunday/Projects into beta
+
+Conflicts:
+	WebRoot/web/s_login.html
+	src/webAction/LoginAction.java
+	src/webAction/RegAction3.java
+	src/webAction/ReserveAction.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch beta
+# Your branch and 'origin/beta' have diverged,
+# and have 1 and 4 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   .gitignore
+#	modified:   WebRoot/META-INF/context.xml
+#	modified:   WebRoot/web/s_login.html
+#	modified:   WebRoot/web/s_login.jsp
+#	deleted:    src/RserverServiceyyj.java
+#	modified:   src/webAction/LoginAction.java
+#	modified:   src/webAction/ReserveAction.java
+#
+

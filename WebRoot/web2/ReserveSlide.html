@@ -11,26 +11,41 @@
 
 <script type='text/javascript' src='web2/images/js/modernizr.min.js?ver=2.6.1'></script>
 <script type='text/javascript'>
+
 /* <![CDATA[ */
 var CSSettings = {"pluginPath":"web2/images"};
 /* ]]> */
 </script>
+
 <script type='text/javascript' src='web2/images/js/cute.slider.js?ver=2.0.0'></script>
 <script type='text/javascript' src='web2/images/js/cute.transitions.all.js?ver=2.0.0'></script>
-<script>
-function ghtp() {
-    document.getElementById("xxx").style.backgroundImage="url(./web2/images/"+i+".jpg)";
-    i++;
-    if (i>4) i=1;
-}
-var i=1;
-setInterval("ghtp()",10000);
-</script>
+<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+
+	<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+
+	<link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+
+	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+	<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+
+	<!-- END GLOBAL MANDATORY STYLES -->
+
+	<!-- BEGIN PAGE LEVEL STYLES -->
+
+	<link href="media/css/login-soft.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body id=xxx>
+<body >
+
 <form>
-<h2>教师入口&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="web2/s_login.jsp">学生入口</a></h2>
+
 </form>
 <div class="c-860 c-demoslider">
 <div id="cuteslider_3_wrapper" class="cs-circleslight">
@@ -97,7 +112,70 @@ setInterval("ghtp()",10000);
 <div class="cute-shadow" ><img src="web2/images/bg/shadow.png" alt="shadow"></div>
 </div>
 <p><script type="text/javascript">var cuteslider3 = new Cute.Slider();cuteslider3.setup("cuteslider_3" , "cuteslider_3_wrapper", "web2/images/css/slider-style.css");cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_START, function(event) { });cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_END, function(event) { });cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) { });cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) { });cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) { });</script>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button><a href="./t_login_soft.html">教师入口</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button><a href="./login_soft.html">学生入口</a></button>
 </div><!-- wrapper -->
 
 </body>
+
+	<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+	<script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+	<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+
+	<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+
+	<script src="media/js/excanvas.min.js"></script>
+
+	<script src="media/js/respond.min.js"></script>  
+
+	<![endif]-->   
+
+	<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+	<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+
+	<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+	<script src="media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+
+	<!-- END CORE PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+	<script src="media/js/jquery.validate.min.js" type="text/javascript"></script>
+
+	<script src="media/js/jquery.backstretch.min.js" type="text/javascript"></script>
+
+	<!-- END PAGE LEVEL PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+	<script src="media/js/app.js" type="text/javascript"></script>
+
+	<script src="media/js/login-soft.js" type="text/javascript"></script>      
+
+	<!-- END PAGE LEVEL SCRIPTS --> 
+
+	 <script>
+
+		jQuery(document).ready(function() {     
+
+		  App.init();
+		  Login.init();
+
+		});
+
+	</script>
+
+	<!-- END JAVASCRIPTS -->
+
+<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
+
 </html>

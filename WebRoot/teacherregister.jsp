@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <center>
   <body>
-        <form action="web/login/teacherregister" method="TeaReg">
+        <form action="login/teacherregister" method="post" >
       	用户名：<input type="text" name="username"></input><br/>
    		密码：<input type="password" name="pass1"></input><br/>
    		再次输入：<input type="password" name="pass2"></input><br/>

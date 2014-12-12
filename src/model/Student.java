@@ -4,6 +4,14 @@ public class Student {
 	private String pass;
 	private String username;
 	private String stuname;
+	private String email;
+	private int studentId;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public void Print(){
 		System.out.println(pass+"  "+username+" "+stuname+" "+studentId);
 	}
@@ -31,7 +39,7 @@ public class Student {
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
-	private int studentId;
+	
 	
 	
 

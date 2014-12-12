@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import db.DbUtils;
 //import com.opensymphony.xwork2.ActionSupport;
 
-public class RegAction extends ActionSupport {
+public class RegAction3 extends ActionSupport {
 	private String pass1;
 	private String pass2;
 	private String username;
