@@ -1,0 +1,150 @@
+/* Premium Table CSS */
+
+body {
+	font: normal 14px auto Arial, Verdana, Helvetica, sans-serif;
+	color: #4f6b72;
+	background: #fff;
+	margin-top: 20px;
+}
+
+a {
+	color: #c75f3e;
+}
+#wrap { width: 800px; margin: 0 auto; }
+#tableWrap { 
+background: #f3f3f3; 
+-moz-box-shadow: 0px 0px 4px #555; /* FF3.5+ */
+-webkit-box-shadow: 0px 0px 4px #555; /* Saf3.0+, Chrome */
+box-shadow: 0px 0px 4px #555; /* Opera 10.5, IE 9.0 */
+width: 60%;
+-moz-border-radius: 9px; /* FF1+ */
+-webkit-border-radius: 9px; /* Saf3+, Chrome */
+border-radius: 9px; /* Opera 10.5, IE 9 */
+_border: 1px solid #ccc;
+}
+*+html #premiumTable, * html #tableWrap { border: 1px solid 000; }
+
+#labels { background: none; }
+
+/* table header - price labels */
+
+/* corners */
+th.topLeft { 
+-moz-border-radius-topleft: 9px;
+-webkit-border-top-left-radius: 9px;
+}
+th.topRight { 
+-moz-border-radius-topright: 9px;
+-webkit-border-top-right-radius: 9px;
+}
+th.bottomLeft { 
+-moz-border-radius-bottomleft: 9px;
+-webkit-border-bottom-left-radius: 9px;
+}
+.bottomRight { 
+-moz-border-radius-bottomright: 9px;
+-webkit-border-bottom-right-radius: 9px;
+}
+
+th.priceLabels {
+	padding-top: 10px; 
+	padding-bottom: 20px;
+	padding-left: 25px;
+	text-align: left;
+	background-image: -moz-linear-gradient(top, #717171, #101010); /* FF3.6 */
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #717171),color-stop(1, #101010)); /* Saf4+, Chrome */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#717171', EndColorStr='#101010'); /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#717171', EndColorStr='#101010')"; /* IE8 *	border-bottom: 1px solid #5F0000; */
+	border-top: 1px solid #bababa;
+	border-bottom: 1px solid #111;
+	border-right: 1px solid #a1a1a1;
+	border-left: 1px solid #222;
+	color: #fff;
+	}
+
+#premiumTable {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+caption {
+	padding: 0 0 5px 0;	 
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+	display: none;
+}
+
+th {
+	font: bold 11px Arial, Verdana, Helvetica, sans-serif;
+	color: #464646;
+	border-right: 1px solid #fff;
+	border-top: 0;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+td {
+	border-right: 1px solid #fff;
+	border-left: 1px solid #e3e3e3;
+	padding: 10px 6px 10px 12px;
+	color: #464646;
+	text-align: center;
+}
+.empty { 
+border-left:0; 
+}
+.alt {
+	background: #eaeaea;
+}
+.over { 
+background: #fff; 
+}
+th.spec {
+	border-top: 0;
+	font: bold 14px Arial, Verdana, Helvetica, sans-serif;
+	padding-left: 25px;
+}
+
+th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+tbody { border-bottom: 1px solid #000; }
+tfoot td, tfoot th {  border-right: 0; border-left: 0; border-top: 1px solid #ccc; 
+  background-image: -moz-linear-gradient(top, #ffffff, #dddddd); /* FF3.6 */
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #dddddd)); /* Saf4+, Chrome */
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#dddddd'); /* IE6,IE7 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#dddddd')"; /* IE8 */
+}
+
+a.signUpBtn {
+	text-indent: -9999px;
+	display: block;
+	background: url(../../images/signUpBtn.png) no-repeat top left; 
+	width: 107px;
+	height: 48px;
+	margin: 0 auto;
+}
+/* image rotate */
+
+.rotate {
+     -moz-transform: rotate(7.5deg);  /* FF3.5+ */
+       -o-transform: rotate(7.5deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(7.5deg);  /* Saf3.1+, Chrome */
+             filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', 
+                     M11=0.9914448613738104, M12=-0.13052619222005157, M21=0.13052619222005157, M22=0.9914448613738104); /* IE6,IE7 */
+         -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', 
+                     M11=0.9914448613738104, M12=-0.13052619222005157, M21=0.13052619222005157, M22=0.9914448613738104)"; /* IE8 */
+               zoom: 1;
+}
+  

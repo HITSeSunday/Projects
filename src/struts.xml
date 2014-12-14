@@ -8,7 +8,7 @@
 	<package name="login" extends="struts-default" namespace="/login">
 		<action name="teacherlogin" class="webAction.LoginAction"
 			method="TeacherLogin">
-			<result name="SUCCESS">/teacherloginsuccess.jsp</result>
+			<result name="SUCCESS" type="redirectAction">../chat/tviewunreadchat</result>
 			<result name="ERROR">/teacherloginfailed.jsp</result>
 			<result name="PWD">/teacherwrongpass.jsp</result>
 		</action>
@@ -16,65 +16,179 @@
 
 		<action name="studentlogin" class="webAction.LoginAction"
 			method="StudentLogin">
-			<result name="SUCCESS" type="redirect">/web2/index.jsp</result>
-			<result name="ERROR" type="redirect">/web2/s_login_error.jsp</result>
-			<result name="PWD" type="redirect">/web2/s_login_error.jsp</result>
+			<result name="SUCCESS" type="redirectAction">../chat/sviewunreadchat</result>
+			<result name="ERROR" type="redirect">/s_login_error.jsp</result>
+			<result name="PWD" type="redirect">/s_login_error.jsp</result>
 		</action>
 
-		<action name="teacherregister" class="webAction.RegAction"
-			method="TeaReg">
-			<result name="SUCCESS">/teacherlogin.jsp</result>
-			<result name="EXIT">/teacherregisterexistingid.jsp</result>
-			<result name="WRONGPASS">/teacherregisterwrongpass.jsp</result>
-		</action>
+		<!-- <action name="teacherregister" class="webAction.RegAction" method="TeaReg"> 
+			<result name="SUCCESS">/teacherlogin.jsp</result> <result name="EXIT">/teacherregisterexistingid.jsp</result> 
+			<result name="WRONGPASS">/teacherregisterwrongpass.jsp</result> </action> -->
 
 		<action name="studentregister" class="webAction.RegAction"
 			method="StuReg">
-			<result name="SUCCESS" type="redirect">/web2/s_login.jsp</result>
-			<result name="INPUT">/studentregisterexistingid.jsp</result>
-			<result name="EXIT">/studentregisterexistingid.jsp</result>
-			<result name="WRONGPASS">/studentregisterwrongpass.jsp</result>
+			<result name="SUCCESS" type="redirect">/s_login.jsp</result>
+			<result name="TOOLONG" type="redirect">/s_register_error_toolong.jsp
+			</result>
+			<result name="PTOOLONG" type="redirect">/s_register_error_ptoolong.jsp
+			</result>
+			<result name="WRONGPASS" type="redirect">/s_register_error_wrong.jsp
+			</result>
+			<result name="EXIT" type="redirect">/s_register_error_exit.jsp</result>
 		</action>
 
 	</package>
 	<package name="jdbc" extends="struts-default" namespace="/jdbc">
 
-		<action name="all" class="webAction.ReserveAction" method="All">
-			<result name="SUCCESS">/page.jsp</result>
-			<result name="ERROR">/error.jsp</result>
-		</action>
-		<action name="alls" class="webAction.ReserveAction" method="All">
-			<result name="SUCCESS">/page_student.jsp</result>
-			<result name="ERROR">/error.jsp</result>
-		</action>
+
 		<action name="delreserve" class="webAction.ReserveAction"
 			method="DeleteReserve">
-			<result name="SUCCESS">/success.jsp</result>
-			<result name="ERROR">/error.jsp</result>
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">viewbyteacher</param>
+				<param name="date">${reserve.getDate()}</param>
+				<param name="teacherId">${reserve.getTeacherId()}</param>
+			</result>
 		</action>
 		<action name="addreserve" class="webAction.ReserveAction"
 			method="AddReserve">
-			<result name="SUCCESS">/success.jsp</result>
-			<result name="ERROR">/error.jsp</result>
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">viewbyteacher</param>
+				<param name="date">${reserve.getDate()}</param>
+				<param name="teacherId">${reserve.getTeacherId()}</param>
+			</result>
+			<result name="ERROR" type="chain">
+				<param name="actionName">viewbyteachererror</param>
+				<param name="date">${reserve.getDate()}</param>
+				<param name="teacherId">${reserve.getTeacherId()}</param>
+			</result>
 		</action>
-		<action name="reservereserve" class="webAction.ReserveAction" method="ReserveReserve">
-			<result name="HAS">/has.jsp</result>
-			<result name="ERROR">/error.jsp</result>
-			<result name="SUCCESS">/success.jsp</result>
+		<action name="reservereserve" class="webAction.ReserveAction"
+			method="ReserveReserve">
+			<result name="ERROR" type="chain">
+				<param name="actionName">sviewbyteachererror</param>
+				<param name="date">${reserve.getDate()}</param>
+				<param name="teacherId">${reserve.getTeacherId()}</param>
+			</result>
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">sviewbyteacher</param>
+				<param name="date">${reserve.getDate()}</param>
+				<param name="teacherId">${reserve.getTeacherId()}</param>
+			</result>
 		</action>
-		<action name="cancelreserve" class="webAction.ReserveAction" method="CancelReserve">
-			<result name="SUCCESS">/success.jsp</result>
-		</action>	
-		<action name="viewbydate" class="webAction.ReserveAction" method="day">
-			<result name="SUCCESS">/web/daydivides.jsp</result>
+		<action name="cancelreserve" class="webAction.ReserveAction"
+			method="CancelReserve">
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">stuview</param>
+				<param name="date">${reserve.getDate()}</param>
+				<param name="ss">${reserve.getSs()}</param>
+			</result>
 		</action>
-		<action name="viewbyteacher" class="webAction.ReserveAction" method="Tea">
-			<result name="SUCCESS">/web/daydividet.jsp</result>
+		<action name="viewbyteacher" class="webAction.ReserveAction"
+			method="Tea">
+			<result name="SUCCESS">/daydivideteacher.jsp</result>
 		</action>
-		<action name="TeacherShow" class="webAction.TeacherShow" method="Days">
-			<result name="SUCCESS">/success.jsp</result>
+		<action name="viewbyteachererror" class="webAction.ReserveAction"
+			method="Tea">
+			<result name="SUCCESS">/daydivideteachererror.jsp</result>
 		</action>
-		
-		
-		</package>
+		<action name="sviewbyteacher" class="webAction.ReserveAction"
+			method="Tea">
+			<result name="SUCCESS">/daydividestudent.jsp</result>
+		</action>
+		<action name="sviewbyteachererror" class="webAction.ReserveAction"
+			method="Tea">
+			<result name="SUCCESS">/daydividestudenterror.jsp</result>
+		</action>
+		<action name="stuview" class="webAction.ReserveAction" method="Stu">
+			<result name="SUCCESS">/daydividestudents.jsp</result>
+		</action>
+		<action name="TeacherShow" class="webAction.TeacherShow"
+			method="Dayt">
+			<result name="SUCCESS">/montht.jsp</result>
+		</action>
+		<action name="sTeacherShow" class="webAction.TeacherShow"
+			method="Dayt">
+			<result name="SUCCESS">/months.jsp</result>
+		</action>
+		<action name="studentShow" class="webAction.TeacherShow"
+			method="Days">
+			<result name="SUCCESS">/monthss.jsp</result>
+		</action>
+	</package>
+
+
+	<package name="chat" extends="struts-default" namespace="/chat">
+		<action name="tsendallchat" class="webAction.ChatAction"
+			method="tsendAllChat">
+			<result name="SUCCESS" type="chain">tshowallchat</result>
+		</action>
+		<action name="tsendpersonalchat" class="webAction.ChatAction"
+			method="tsendPersonalChat">
+			<result name="SUCCESS" type="chain">sviewchatpersonnal</result>
+		</action>
+		<action name="tsendpersonalchatsmall" class="webAction.ChatAction"
+			method="tsendPersonalChat">
+			<result name="SUCCESS" type="chain">tviewchatpersonnalsmall</result>
+		</action>
+		<action name="ssendallchat" class="webAction.ChatAction"
+			method="ssendAllChat">
+			<result name="SUCCESS" type="chain">sshowallchat</result>
+		</action>
+		<action name="ssendpersonalchat" class="webAction.ChatAction"
+			method="ssendPersonalChat">
+			<result name="SUCCESS" type="chain">sviewchatpersonnal</result>
+		</action>
+		<action name="ssendpersonalchatsmall" class="webAction.ChatAction"
+			method="ssendPersonalChat">
+			<result name="SUCCESS" type="chain">sviewchatpersonnalsmall</result>
+		</action>
+		<action name="tshowallchat" class="webAction.ChatAction"
+			method="showallChat">
+			<result name="SUCCESS">/tchat.jsp</result>
+		</action>
+		<action name="sshowallchat" class="webAction.ChatAction"
+			method="showallChat">
+			<result name="SUCCESS">/schat.jsp</result>
+		</action>
+		<action name="sviewchatpersonnal" class="webAction.ChatAction"
+			method="viewChatPersonnal">
+			<result name="SUCCESS">/schatpersonal.jsp</result>
+		</action>
+		<action name="tviewchatpersonnalsmall" class="webAction.ChatAction"
+			method="viewChatPersonnal">
+			<result name="SUCCESS">/tchatpersonalsmall.jsp</result>
+		</action>
+		<action name="sviewchatpersonnalsmall" class="webAction.ChatAction"
+			method="viewChatPersonnal">
+			<result name="SUCCESS">/schatpersonalsmall.jsp</result>
+		</action>
+		<action name="tviewchatpersonnal" class="webAction.ChatAction"
+			method="viewChatPersonnal">
+			<result name="SUCCESS">/tchatpersonal.jsp</result>
+		</action>
+		<action name="tviewunreadchat" class="webAction.MessageAction"
+			method="tShowUnreadMessage">
+			<result name="SUCCESS">/t_index.jsp</result>
+		</action>
+		<action name="sviewunreadchat" class="webAction.MessageAction"
+			method="sShowUnreadMessage">
+			<result name="SUCCESS">/s_index.jsp</result>
+		</action>
+		<action name="sreadchat" class="webAction.MessageAction"
+			method="UpdateUnread">
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">sviewchatpersonnal</param>
+				<param name="currentChat.sid">${currentChat.getSid()}</param>
+				<param name="currentChat.tid">${currentChat.getTid()}</param>
+			</result>
+		</action>
+		<action name="treadchat" class="webAction.MessageAction"
+			method="UpdateUnread">
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">tviewchatpersonnal</param>
+				<param name="currentChat.tid">${currentChat.getTid()}</param>
+				<param name="currentChat.sid">${currentChat.getSid()}</param>
+			</result>
+		</action>
+	</package>
 </struts>    

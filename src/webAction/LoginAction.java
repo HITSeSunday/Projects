@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
+//int mainint main
 import com.opensymphony.xwork2.ActionSupport;
 
 import db.DbUtils;
@@ -12,6 +15,7 @@ import db.DbUtils;
 public class LoginAction extends ActionSupport {
 	private String password;
 	private String username;
+	private Map session;
 
 	public String getUsername() {
 		return username;
@@ -21,28 +25,33 @@ public class LoginAction extends ActionSupport {
 		this.username = username;
 	}
 
-
 	public String TeacherLogin() {
+		session = ActionContext.getContext().getSession();
 		ResultSet rs = null;
 		String result = "";
 		Connection connection = DbUtils.getConnection();
 		try {
 			Statement state = connection.createStatement();
-			String sql = "select password from user_teacher where username=\""
-					+ username +"\"";
+			String sql = "select password,teachername,teacherid from user_teacher where username=\""
+					+ username + "\"";
 			System.out.println(sql);
 			rs = state.executeQuery(sql);
 			System.out.println("25");
 			if (rs.next()) {
 				System.out.println("53");
 				String input = String.valueOf(rs.getString(1));
-				System.out.println("input: "+input);
-				System.out.println("pass: "+password+"  "+input);
-				if ((password.equals(input))==true) {
-					System.out.println("SU: "+password+" "+input);
+				System.out.println("input: " + input);
+				System.out.println("pass: " + password + "  " + input);
+				if ((password.equals(input)) == true) {
+					System.out.println("SU: " + password + " " + input);
+					String teacherName = rs.getString(2);
+					int teacherId = rs.getInt(3);
+					session.put("teachername", teacherName);
+					session.put("teacherId", teacherId);
+
 					return "SUCCESS";
 				} else {
-					return  "PWD";
+					return "PWD";
 				}
 			} else {
 				return "ERROR";
@@ -53,34 +62,37 @@ public class LoginAction extends ActionSupport {
 			e.printStackTrace();
 			return "ERROR";
 		}
-//		System.out.println(result);
-//		return result;
+		// System.out.println(result);
+		// return result;
 	}
-	
-	
-	
+
 	public String StudentLogin() {
+		session = ActionContext.getContext().getSession();
 		ResultSet rs = null;
 		String result = "";
 		Connection connection = DbUtils.getConnection();
 		try {
 			Statement state = connection.createStatement();
-			String sql = "select password from user_student where username=\""
-					+ username +"\"";
+			String sql = "select password,studentname,stuid from user_student where username=\""
+					+ username + "\"";
 			System.out.println(sql);
 			rs = state.executeQuery(sql);
 			System.out.println("25");
 			if (rs.next()) {
 				System.out.println("53");
 				String input = String.valueOf(rs.getString(1));
-				System.out.println("input: "+input);
-				System.out.println("pass: "+password+"  "+input);
-				if (password.equals(input)==true) {
-					System.out.println("SU: "+password+" "+input);
-					
+				System.out.println("input: " + input);
+				System.out.println("pass: " + password + "  " + input);
+				if (password.equals(input) == true) {
+					String ssname = rs.getString(2);
+					System.out.println(ssname);
+					session.put("studentname", ssname);
+					int ssid = rs.getInt(3);
+					System.out.println(ssid);
+					session.put("studentid", ssid);
 					return "SUCCESS";
 				} else {
-					return  "PWD";
+					return "PWD";
 				}
 			} else {
 				return "ERROR";
@@ -92,6 +104,7 @@ public class LoginAction extends ActionSupport {
 			return "ERROR";
 		}
 	}
+
 	public String getPassword() {
 		return this.password;
 	}
@@ -99,38 +112,41 @@ public class LoginAction extends ActionSupport {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public int getCurrentStu(String name){
-		int ans=0;
-		String sql="select stuid from user_student where username="+"\""+name+"\"";
-		
-		ResultSet rs=null;
+
+	public int getCurrentStu(String name) {
+		int ans = 0;
+		String sql = "select stuid from user_student where username=" + "\""
+				+ name + "\"";
+
+		ResultSet rs = null;
 		System.out.println(sql);
-		rs=DbUtils.getInstance().Query(sql);
-		try{
-			while(rs.next()){
-				int tmp=rs.getInt(1);
-				ans=tmp;
+		rs = DbUtils.getInstance().Query(sql);
+		try {
+			while (rs.next()) {
+				int tmp = rs.getInt(1);
+				ans = tmp;
 				break;
 			}
-		}catch(Exception e){
-			ans=-1;
+		} catch (Exception e) {
+			ans = -1;
 		}
 		return ans;
 	}
-	public int getCurrentTea(String name){
-		int ans=0;
-		String sql="select teacherid from user_teacher where username=\""+name+"\"";
-		ResultSet rs=null;
-		rs=DbUtils.getInstance().Query(sql);
-		try{
-			while(rs.next()){
-				int tmp=rs.getInt(1);
-				ans=tmp;
+
+	public int getCurrentTea(String name) {
+		int ans = 0;
+		String sql = "select teacherid from user_teacher where username=\""
+				+ name + "\"";
+		ResultSet rs = null;
+		rs = DbUtils.getInstance().Query(sql);
+		try {
+			while (rs.next()) {
+				int tmp = rs.getInt(1);
+				ans = tmp;
 				break;
 			}
-		}catch(Exception e){
-			ans=-1;
+		} catch (Exception e) {
+			ans = -1;
 		}
 		return ans;
 	}
