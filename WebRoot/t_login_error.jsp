@@ -13,12 +13,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 
 <!-- BEGIN HEAD -->
+<Script Language="JavaScript">
+alert("<%=session.getAttribute("tloginerror") %>");
+</Script>
 
 <head>
 
 	<meta charset="utf-8" />
 
-	<title>学生登录</title>
+	<title>教师登录</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -60,8 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- BEGIN BODY -->
 
-<body class="login" >
-	
+<body class="login">
 
 	<!-- BEGIN LOGO -->
 
@@ -79,15 +81,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN LOGIN FORM -->
 
-		<form class="form-vertical login-form" method="post" action="<%=basePath %>login/studentlogin">
-
-			<h3 class="form-title">学生登录</h3>
+		<form class="form-vertical login-form" action=<%=basePath %>login/teacherlogin  method="post" >
+			
+			<h3 class="form-title">教师登陆</h3>
 
 			<div class="alert alert-error hide">
 
 				<button class="close" data-dismiss="alert"></button>
 
-				<span>Enter any username and password.</span>
+				<span>输入用户名和密码.</span>
 
 			</div>
 
@@ -95,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-				<label class="control-label visible-ie8 visible-ie9">用户名</label>
+				<label class="control-label visible-ie8 visible-ie9">Username</label>
 
 				<div class="controls">
 
@@ -103,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username" />
 
 					</div>
 
@@ -113,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">密码</label>
+				<label class="control-label visible-ie8 visible-ie9">Password</label>
 
 				<div class="controls">
 
@@ -121,14 +123,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-lock"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="密码" name="password" />
 
 					</div>
 
 				</div>
 
 			</div>
-
+	
 			<div class="form-actions">
 
 				<label class="checkbox">
@@ -139,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<button type="submit" class="btn blue pull-right">
 
-				Login <i class="m-icon-swapright m-icon-white"></i>
+				登录 <i class="m-icon-swapright m-icon-white"></i>
 
 				</button>            
 
@@ -147,11 +149,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div class="forget-password">
 
-				<h4>忘记密码？</h4>
+				<h4>忘记密码?</h4>
 
 				<p>
 
-					别担心， <a href="javascript:;" class="" id="forget-password">点此</a>
+					别担心 <a href="javascript:;" class="" id="forget-password">点此</a>
 
 					重置密码
 
@@ -163,9 +165,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<p>
 
-					还没有账号 ？&nbsp; 
+					还没有账号 ?&nbsp; 
 
-					<a href="javascript:;" id="register-btn" class="">注册账号</a>
+					<a href="javascript:;" id="register-btn" class="">注册账号！</a>
 
 				</p>
 
@@ -177,11 +179,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN FORGOT PASSWORD FORM -->
 
-		<form class="form-vertical forget-form" action="">
+		<form class="form-vertical forget-form" action="#">
 
 			<h3 class="">忘记密码？</h3>
 
-			<p>输入你的注册邮箱来重置密码</p>
+			<p>输入Email来重置密码</p>
 
 			<div class="control-group">
 
@@ -191,7 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-envelope"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="email" placeholder="Email" name="email" />
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email" />
 
 					</div>
 
@@ -203,7 +205,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<button type="button" id="back-btn" class="btn">
 
-				<i class="m-icon-swapleft"></i> 后退
+				<i class="m-icon-swapleft"></i> 返回
 
 				</button>
 
@@ -221,136 +223,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN REGISTRATION FORM -->
 
-		<form class="form-vertical register-form" action="<%=basePath %>login/studentregister" method="post">
+		<form class="form-vertical register-form" >
 
 			<h3 class="">注册</h3>
+			<h4>尊敬的老师：</h4>
+			&nbsp &nbsp 为了防止出现恶意注册的情况，请您联系我们，我们会第一时间帮您注册,
+			希望本站能帮助您和学生进行更好的交流沟通<br/>
+			&nbsp &nbsp 小尹同学： 530295860@qq.com <br/>
+			&nbsp &nbsp  姚同学： yyjhit@sina.com<br/>
+			&nbsp &nbsp 牟同学： 549595715@qq.com <br/>
 
-			<p>输入您的账号信息:</p>
+
 			
-			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">用户名</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-user"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username"/>
-
-					</div>
-
-				</div>
-
-			</div>
-			
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">真实姓名</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-user"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="真实姓名" name="studentname"/>
-
-					</div>
-
-				</div>
-
-			</div>
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">学号</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-user"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" placeholder="学号" name="studentnumber"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">密码</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-lock"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="密码" name="pass1"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-ok"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="确认密码" name="pass2"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-
-				<label class="control-label visible-ie8 visible-ie9">Email</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-envelope"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name=""/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<div class="controls">
-
-					<label class="checkbox">
-
-					<input type="checkbox" name="tnc"/> 我同意 <a href="#">用户条款</a> 和 <a href="#">隐私政策</a>
-
-					</label>  
-
-					<div id="register_tnc_error"></div>
-
-				</div>
-
-			</div>
+				
 
 			<div class="form-actions">
 
@@ -359,12 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<i class="m-icon-swapleft"></i>  返回
 
 				</button>
-
-				<button type="submit" id="register-submit-btn" class="btn blue pull-right">
-
-					注册 <i class="m-icon-swapright m-icon-white"></i>
-
-				</button>            
+        
 
 			</div>
 
@@ -399,7 +280,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="<%=basePath %>media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
 
 	<script src="<%=basePath %>media/js/bootstrap.min.js" type="text/javascript"></script>
-
+	
 	<!--[if lt IE 9]>
 
 	<script src="<%=basePath %>media/js/excanvas.min.js"></script>
@@ -434,11 +315,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- END PAGE LEVEL SCRIPTS --> 
 
-	 <script>
+	<script>
 
 		jQuery(document).ready(function() {     
 
 		  App.init();
+
 		  Login.init();
 
 		});

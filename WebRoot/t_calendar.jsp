@@ -86,8 +86,8 @@
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="t_index.jsp"> <img
-					src="media/image/logo.png" alt="logo" />
+				<a class="brand" href="<%=basePath %>chat/tviewunreadchat.action"> <img
+					src="<%=basePath %>media/image/logo.png" alt="logo" />
 
 				</a>
 
@@ -178,7 +178,7 @@
 						class="icon-table"></i> <span class="title">我的日历</span> <span
 						class="selected"></span>
 				</a></li>
-				<li class=""><a href="<%=basePath%>tprofile.jsp"> <i
+				<li class=""><a href="<%=basePath%>jdbc/tviewprofile?ttid=<%=session.getAttribute("teacherId") %>"> <i
 						class="icon-file-text"></i> <span class="title">我的信息</span> <span
 						class="arrow "></span>
 

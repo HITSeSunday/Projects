@@ -13,7 +13,7 @@ public class DbUtils {
 	private Statement statement;
 	private ResultSet resultset;
 	private DbPool pool;
-	private DbUtils() {}
+	public  DbUtils() {}
 
 	public static DbUtils getInstance() {
 		if (instance == null)
@@ -30,7 +30,7 @@ public class DbUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+//		close();
 		return resultset;
 	}
 	public int Add(String sql) {
@@ -42,7 +42,7 @@ public class DbUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+//		close();
 		return result;
 	}
 	public int Update(String sql) {
@@ -54,10 +54,11 @@ public class DbUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+//		close();
 		return result;
 	}
 	
-	private void close() {
+	public void close() {
 		if (statement != null) {
 			try {
 				statement.close();
@@ -76,6 +77,8 @@ public class DbUtils {
 			}
 			connection = null;
 		}
+		if(connection==null&&statement==null)
+		System.out.println("SUCCESS CLOSED");
 	}
 
 	public static Connection getConnection() {
@@ -110,7 +113,7 @@ public class DbUtils {
 			e.printStackTrace();
 		}
 	}
-public static void close(Connection conn) {
+	public static void close(Connection conn) {
 		
 		try {
 			conn.close();

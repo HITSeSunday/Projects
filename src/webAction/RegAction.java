@@ -4,16 +4,20 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import db.DbUtils;
 
-
 public class RegAction extends ActionSupport {
 	private String pass1;
 	private String pass2;
+	private String tne;
 	private String curpass;
+	private Map session;
+	private String tclass;
 	public String getCurpass() {
 		return curpass;
 	}
@@ -26,6 +30,7 @@ public class RegAction extends ActionSupport {
 	private String teacherName;
 	private String studentname;
 	private int studentnumber;
+
 	public int getStuid() {
 		return stuid;
 	}
@@ -33,17 +38,26 @@ public class RegAction extends ActionSupport {
 	public void setStuid(int stuid) {
 		this.stuid = stuid;
 	}
-
-	public int getTeaid() {
-		return teaid;
+	
+	public String getTne() {
+		return tne;
 	}
 
-	public void setTeaid(int teaid) {
-		this.teaid = teaid;
+	public void setTne(String tne) {
+		this.tne = tne;
+	}
+
+	public int getTtid() {
+		return ttid;
+	}
+
+	public void setTtid(int ttid) {
+		this.ttid = ttid;
 	}
 
 	private int stuid;
-	private int teaid;
+	private int ttid;
+
 	public String getEmail() {
 		return email;
 	}
@@ -53,6 +67,7 @@ public class RegAction extends ActionSupport {
 	}
 
 	private String email;
+
 	public String getTeacherName() {
 		return teacherName;
 	}
@@ -95,6 +110,14 @@ public class RegAction extends ActionSupport {
 		this.studentname = studentname;
 	}
 
+	public String getTclass() {
+		return tclass;
+	}
+
+	public void setTclass(String tclass) {
+		this.tclass = tclass;
+	}
+
 	public int getStudentnumber() {
 		return studentnumber;
 	}
@@ -103,66 +126,94 @@ public class RegAction extends ActionSupport {
 		this.studentnumber = studentnumber;
 	}
 
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	public String StuChangePass() {
+		DbUtils la = DbUtils.getInstance();
+		String sql = "select password from user_student where stuid=" + stuid;
+		System.out.println(sql);
+		ResultSet rs = null;
+		rs = la.Query(sql);
+		String pass11 = null;
+		try {
+			while (rs.next()) {
+				pass11 = rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			la.close();
+			return "ERROR";
+		}
+		if (curpass.compareTo(pass11) != 0) {
+			la.close();
+			return "WRONG";
+		}
+		if (pass1.compareTo(pass2) != 0) {
+			la.close();
+			return "NOEQUAL";
+		}
+		if (pass1.length() < 6 || pass1.length() > 18) {
+			la.close();
+			return "TOOLONG";
+		}
+		sql = "update user_student set password=\"" + pass1 + "\"where stuid="
+				+ stuid;
+		DbUtils.getInstance().Update(sql);
+		la.close();
+		return "SUCCESS";
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public String StuChangePass(){
-		String sql="select password from user_student where stuid="+stuid;
-		ResultSet rs=null;
-		rs=DbUtils.getInstance().Query(sql);
-		String pass11=null;
-		try{
-			while(rs.next()){
-				pass11=rs.getString(1);
+	}
+
+	public String TeaChangePass() {
+		session = ActionContext.getContext().getSession();
+		String sql = "select password from user_teacher where teacherid="
+				+ ttid;
+		System.out.println(sql + "changepass");
+		DbUtils la = DbUtils.getInstance();
+		ResultSet rs = null;
+		rs = la.Query(sql);
+		String pass11 = null;
+		try {
+			while (rs.next()) {
+				pass11 = rs.getString(1);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			la.close();
+			session.put("tchangeerror", "数据库错误，请稍后重试！");
 			return "ERROR";
 		}
-		if(curpass.compareTo(pass11)!=0){
-			return "WRONG";
-		}
-		if(pass1.compareTo(pass2)!=0){
-			return "NOEQUAL";
-		}
-		if(pass1.length()<6||pass1.length()>18){
-			return "TOOLONG";
-		}
-		sql="update user_student set password=\""+pass1+"\"where stuid="+stuid;
-		DbUtils.getInstance().Update(sql);
-		return "SUCCESS";
-		
-	}
-	public String TeaChangePass(){
-		String sql="select password from user_teacher where teacherid="+teaid;
-		ResultSet rs=null;
-		rs=DbUtils.getInstance().Query(sql);
-		String pass11=null;
-		try{
-			while(rs.next()){
-				pass11=rs.getString(1);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
+		if (curpass.compareTo(pass11) != 0) {
+			la.close();
+			session.put("tchangeerror", "当前密码错误！");
 			return "ERROR";
 		}
-		if(curpass.compareTo(pass11)!=0){
-			return "WRONG";
+		if (pass1.compareTo(pass2) != 0) {
+			la.close();
+			session.put("tchangeerror", "两次输入不符！");
+			return "ERROR";
 		}
-		if(pass1.compareTo(pass2)!=0){
-			return "NOEQUAL";
+		if (pass1.length() < 6 || pass1.length() > 18) {
+			la.close();
+			session.put("tchangeerror", "密码长度应该在6-18位！");
+			return "ERROR";
 		}
-		if(pass1.length()<6||pass1.length()>18){
-			return "TOOLONG";
-		}
-		sql="update user_teacher set password=\""+pass1+"\"where stuid="+stuid;
+		sql = "update user_teacher set password=\"" + pass1
+				+ "\"where teacherid=" + ttid;
+		System.out.println(sql);
 		DbUtils.getInstance().Update(sql);
+		la.close();
 		return "SUCCESS";
-		
+
 	}
+
 	public String StuReg() {
+		session = ActionContext.getContext().getSession();
 		ResultSet rs = null;
 		System.out.println("REG " + username + " " + pass1 + " " + pass2);
-		if(username.length()<6||username.length()>18)return "TOOLONG";
+		if(username.length()<3||username.length()>18){
+			session.put("sregerror","用户名长度应该在3-18位！");
+			return "ERROR";
+		}
 		Connection connection = DbUtils.getConnection();
 	
 		try {
@@ -171,33 +222,51 @@ public class RegAction extends ActionSupport {
 					+ username + "\"";
 			rs = state.executeQuery(sql);
 			if (rs.next())
-				return "EXIT";
+			{
+				session.put("sregerror","用户名已存在！");
+				return "ERROR";
+			}
 			sql="select studentnumber from user_student where studentnumber=\""+studentnumber+"\"";
 			rs=state.executeQuery(sql);
 			if (rs.next())
-				return "EXIT";
+			{
+				session.put("sregerror","这个学号有人注册了！");
+				return "ERROR";
+			}
 			if (!pass1.equals(pass2))
-				return "WRONGPASS";
+			{
+				session.put("sregerror","两次输入的密码不匹配！");
+				return "ERROR";		
+			}
 			//!!!!!!!!!!!!!!!!!!!!
-			if(pass1.length()<6||pass1.length()>18)return "PTOOLONG";
+			if(pass1.length()<6||pass1.length()>18)
+			{
+				session.put("sregerror","密码长度应该在6-18位！");
+				return "ERROR";		
+			}
 			sql = "insert into user_student values(\"" + studentnumber + "\","
 					+ "\"" + username + "\"," + "\"" + pass1 + "\"," + "\""
-					+ studentname + "\",\""+email + "\",null)";
+					+ studentname + "\",\""+email + "\",null,null)";
 			System.out.println(sql);
 			int rss = state.executeUpdate(sql);
 			System.out.println("RSS: " + rss);
 			return "SUCCESS";
 		} catch (Exception e) {
+			session.put("sregerror","数据库错误，请稍后再试..");
 			return "ERROR";
 		}
 	}
 
 	public String TeaReg() {
+		session = ActionContext.getContext().getSession();
 		ResultSet rs = null;
 		System.out.println("REG " + username + " " + pass1 + " " + pass2);
 		Connection connection = DbUtils.getConnection();
-		if(username.length()<6||username.length()>18)return "TOOLONG";
-		
+		if (username.length() < 3 || username.length() > 18) {
+			session.put("tregerror","用户名长度应该在3-18位！");
+			return "ERROR";
+		}
+
 		try {
 			Statement state = connection.createStatement();
 			String sql = "select username from user_teacher where username=\""
@@ -205,18 +274,29 @@ public class RegAction extends ActionSupport {
 			System.out.println(sql);
 			rs = state.executeQuery(sql);
 			if (rs.next())
-				return "EXIT";
+			{
+				session.put("tregerror","用户名已存在！");
+				return "ERROR";
+			}
 			if (!pass1.equals(pass2))
-				return "WRONGPASS";
-			if(pass1.length()<6||pass1.length()>18)return "PTOOLONG";
-			sql = "insert into user_teacher values(\"" + null + "\"," + "\""
-					+ teacherName + "\"," + "\"" + username + "\"," + "\""
-					+ pass1 + "\"" + ")";
+			{
+				session.put("tregerror","两次密码不匹配！");
+				return "ERROR";
+			}
+			if (pass1.length() < 6 || pass1.length() > 18)
+			{
+				session.put("tregerror","密码长度应该在6-18位！");
+				return "ERROR";
+			}
+			sql = "INSERT INTO `user_teacher` (`teachername`, `username`, "
+					+ "`password`, `email`, `classname`, `placename`, `introtuction`) VALUES"
+					+ " ('"+tne+"', '"+username+"', '"+pass1+"', '"+email+"', '"+tclass+"', '暂未填写', '暂未填写')";
 			System.out.println(sql);
 			int rss = state.executeUpdate(sql);
 			System.out.println("RSS: " + rss);
 			return "SUCCESS";
 		} catch (Exception e) {
+			session.put("tregerror","未知错误，请稍候重试！");
 			return "ERROR";
 		}
 	}

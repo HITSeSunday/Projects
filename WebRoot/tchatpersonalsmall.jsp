@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 										<ul class="chats">
 <s:iterator value="list" var="curChat" status="sta">
-<tr>										<input type="hidden" id="1" value=<s:property value="list[1]"/> >
+<tr>										
 											<li class="in">
 
 												
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 										<div class="input-cont">   
 											<input class="m-wrap" type="text" placeholder="输入消息" name="currentChat.message"/>
-											<input type="hidden" name="currentChat.sid" value="<%=session.getAttribute("studentid") %>"/>
+											<input type="hidden" name="currentChat.sid" value="<%=request.getAttribute("CurrentChat.sid") %>"/>
 											<input type="hidden" name="currentChat.writer" value="<%=session.getAttribute("teachername") %>"/>
 											<input type="hidden" name="currentChat.tid" value="<%=request.getAttribute("currentChat.tid") %>"/>
 											

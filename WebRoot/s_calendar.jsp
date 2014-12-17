@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<meta charset="utf-8" />
 
-	<title>lizhijun</title>
+	<title>查看教师日程</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -75,9 +75,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="s_index.jsp">
+				<a class="brand" href="<%=basePath %>chat/sviewunreadchat.action">
 
-				<img src="media/image/logo.png" alt="logo" />
+				<img src="<%=basePath %>media/image/logo.png" alt="logo" />
 
 				</a>
 
@@ -190,21 +190,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<ul class="sub-menu">
 
+
+<s:iterator value="#session.listt" var="ssb" status="std">
+<td>
 						<li >
 
-							<a href="lizhijun.jsp">
+							<tr><a href="<%=basePath %>jdbc/sviewprofile?ttid=<s:property value="#ssb.teacherid" />"><tr>
 
-							李治军</a>
-
-						</li>
-
-						<li >
-
-							<a href="wangzhongjie.html">
-
-							王忠杰</a>
+							<tr><s:property value="#ssb.teachername" /></tr></a>
 
 						</li>
+</td>
+</s:iterator>
+						
 
 					</ul>
 

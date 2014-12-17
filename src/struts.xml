@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<constant name="struts.devMode" value="true" />
+		
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<constant name="struts.locale" value="UTF-8" />
 
@@ -9,8 +9,7 @@
 		<action name="teacherlogin" class="webAction.LoginAction"
 			method="TeacherLogin">
 			<result name="SUCCESS" type="redirectAction">../chat/tviewunreadchat</result>
-			<result name="ERROR">/teacherloginfailed.jsp</result>
-			<result name="PWD">/teacherwrongpass.jsp</result>
+			<result name="ERROR" type="redirect">/t_login_error.jsp</result>
 		</action>
 
 
@@ -18,23 +17,17 @@
 			method="StudentLogin">
 			<result name="SUCCESS" type="redirectAction">../chat/sviewunreadchat</result>
 			<result name="ERROR" type="redirect">/s_login_error.jsp</result>
-			<result name="PWD" type="redirect">/s_login_error.jsp</result>
 		</action>
 
-		<!-- <action name="teacherregister" class="webAction.RegAction" method="TeaReg"> 
-			<result name="SUCCESS">/teacherlogin.jsp</result> <result name="EXIT">/teacherregisterexistingid.jsp</result> 
-			<result name="WRONGPASS">/teacherregisterwrongpass.jsp</result> </action> -->
+		<action name="teacherregister" class="webAction.RegAction" method="TeaReg"> 
+			<result name="SUCCESS" type="redirect">/t_login.jsp</result> 
+			<result name="ERROR" type="redirect">/32612e9a7be1ed10944b47af617c25cb/trege.jsp</result> 
+		</action>
 
 		<action name="studentregister" class="webAction.RegAction"
 			method="StuReg">
 			<result name="SUCCESS" type="redirect">/s_login.jsp</result>
-			<result name="TOOLONG" type="redirect">/s_register_error_toolong.jsp
-			</result>
-			<result name="PTOOLONG" type="redirect">/s_register_error_ptoolong.jsp
-			</result>
-			<result name="WRONGPASS" type="redirect">/s_register_error_wrong.jsp
-			</result>
-			<result name="EXIT" type="redirect">/s_register_error_exit.jsp</result>
+			<result name="ERROR" type="redirect">/s_reg_error.jsp</result>
 		</action>
 
 	</package>
@@ -114,6 +107,31 @@
 			method="Days">
 			<result name="SUCCESS">/monthss.jsp</result>
 		</action>
+		<action name="tviewprofile" class="webAction.ViewProfile" method="ViewTeacherProfile">
+			<result name="SUCCESS">/tprofile.jsp</result>
+		</action>
+		
+		<action name="sviewprofile" class="webAction.ViewProfile" method="ViewTeacherProfile">
+			<result name="SUCCESS">/s_profile.jsp</result>
+		</action>
+		
+		<action name="tviewprofileerror" class="webAction.ViewProfile" method="ViewTeacherProfile">
+			<result name="SUCCESS">/tprofileerror.jsp</result>
+		</action>
+		<action name="tupdateprofile" class="webAction.ViewProfile" method="UpdateTeacherProfile">
+			<result name="SUCCESS" type="chain">
+			<param name="actionName">tviewprofile</param>
+			<param name="d">${ttid}</param>
+			</result>
+		</action>
+		
+		<action name="tchangepass" class="webAction.RegAction" method="TeaChangePass">
+			<result name="SUCCESS" type="redirect">/ReserveSlide.html</result>
+			<result name="ERROR" type="chain">
+			<param name="actionName">tviewprofileerror</param>
+			<param name="ttid">${ttid}</param>
+		</result>
+		</action>
 	</package>
 
 
@@ -124,7 +142,7 @@
 		</action>
 		<action name="tsendpersonalchat" class="webAction.ChatAction"
 			method="tsendPersonalChat">
-			<result name="SUCCESS" type="chain">sviewchatpersonnal</result>
+			<result name="SUCCESS" type="chain">tviewchatpersonnal</result>
 		</action>
 		<action name="tsendpersonalchatsmall" class="webAction.ChatAction"
 			method="tsendPersonalChat">
@@ -190,5 +208,10 @@
 				<param name="currentChat.sid">${currentChat.getSid()}</param>
 			</result>
 		</action>
+	</package>
+	<package name="404" extends="struts-default">
+	<action name="*" >
+	<result>/index.jsp</result>
+	</action>
 	</package>
 </struts>    

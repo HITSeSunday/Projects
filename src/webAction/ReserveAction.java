@@ -81,10 +81,11 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 		String thename =null;
 		session = ActionContext.getContext().getSession();
 		System.out.println("YYJ");
+		DbUtils la = DbUtils.getInstance();
 		String sql1 = "select * from reserve where reserveid="
 				+ this.reserve.getReserveId();
 		System.out.println(sql1);
-		rs = DbUtils.getInstance().Query(sql1);
+		rs = la.Query(sql1);
 		String starttime = "", endtime = "";
 		String thedat = null;
 		try {
@@ -97,18 +98,21 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 				endtime = rs.getString(4);
 				int t = rs.getInt(7);
 				if (t != 0) {
-					if(t== (int)session.get("studentid"))
+					if(t== (Integer)session.get("studentid"))
 					{
 						session.put("reserveerror", "你已经预约了哦");
+						la.close();
 						return "ERROR";
 					}
 					session.put("reserveerror", "已经有人预约了哦");
+					la.close();
 					return "ERROR";
 				}
 			}
 			String Now[] = dateFormat.format(now).split(" ");
 			if (thedat.compareTo(Now[0]) < 0) {
 				session.put("reserveerror", "这个时间已经过去了..");
+				la.close();
 				return "ERROR";
 			}
 			int st = tranInt2(starttime);
@@ -119,6 +123,7 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 				if (now >= st)
 					{
 						session.put("reserveerror", "这个时间已经过去了..");
+						la.close();
 						return "ERROR";
 					}
 			}
@@ -133,17 +138,19 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 			// need two result name
 			if (!canbe) {
 				session.put("reserveerror", "你想要的时间和老师的不符哦。。");
+				la.close();
 				return "ERROR";
 			}
 			if (need - nest < 15 * 60) {
 				session.put("reserveerror", "你想要的时间段太短了。。");
+				la.close();
 				return "ERROR";
 			}
 
 			String del = "delete from reserve where reserveid="
 					+ this.reserve.getReserveId();// reserveid;
 			System.out.println(del);
-			DbUtils.getInstance().Update(del);
+			la.Update(del);
 			System.out.println(nest);
 			System.out.println(st);
 			if (nest - st >0) {
@@ -153,7 +160,7 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 						+ "','" + this.reserve.getStartTime() + "',null, '"
 						+ this.reserve.getDate() + "',0," + "\"无人预约\")";
 				System.out.println("diyitiao" + sql1);
-				DbUtils.getInstance().Add(sql1);
+				la.Add(sql1);
 			}
 			if (ed - need >0) {
 				sql1 = "INSERT INTO reserve VALUES ("
@@ -162,7 +169,7 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 						+ this.reserve.getEndTime() + "','" + endtime.substring(0,5)
 						+ "',null, '" + this.reserve.getDate() + "',0," + "\"无人预约\")";
 				System.out.println("diertiao" + sql1);
-				DbUtils.getInstance().Add(sql1);
+				la.Add(sql1);
 			}
 			sql1 = "INSERT INTO reserve VALUES (" + this.reserve.getTeacherId()
 					+ ", '" + thename + "', '"
@@ -170,11 +177,13 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 					+ this.reserve.getEndTime() + "',null, '"
 					+ this.reserve.getDate() + "'," + session.get("studentid")
 					+ ",\"" + session.get("studentname") + "\")";
-			DbUtils.getInstance().Add(sql1);
+			la.Add(sql1);
 			System.out.println("3 " + sql1);
+			la.close();
 			return "SUCCESS";
 		} catch (Exception e) {
 			System.out.println("error hjwsae");
+			la.close();
 			return "ERROR";
 		}
 	}
@@ -186,45 +195,54 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 //				+ this.reserve.getReserveId() + "')";
 
 		// get current time
+		DbUtils la = DbUtils.getInstance();
 		String get = "select *  from reserve where ReserveId=" +this.reserve.getReserveId();//reserveid;
 		ResultSet rs = null;
 		System.out.println("190 "+get);
-		rs = DbUtils.getInstance().Query(get);
+		rs = la.Query(get);
 		String thedat = null;
 		String starttime = null;
 		String endtime = null;
+		String Tname=null;
 		int teid=0;
 		try {
 			while (rs.next()) {
 				teid=(int)rs.getInt(1);
+				Tname=rs.getString(2);
 				thedat = (String) rs.getString(6);
 				starttime = (String) rs.getString(3).substring(0,5);
 				endtime = (String) rs.getString(4).substring(0,5);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			la.close();
 			return "ERROR";
 		}
 		System.out.println("start time "+starttime+" "+endtime);
 		String sql="delete from reserve where reserveid="+this.reserve.getReserveId();
 		// String sql = "update reserve set sss=0";
-		DbUtils.getInstance().Update(sql);
+		la.Update(sql);
 		String today[] = dateFormat.format(now).split(" ");
 		if (today[0].compareTo(thedat) > 0) {
+			la.close();
 			return "TIMEERROR";
 		} else if (today[0].compareTo(thedat) == 0) {
 			int cur = tranInt2(today[1]);
 			int st = tranInt2(starttime);
 			if (cur <= st + 15 * 60) {
+				la.close();
 				return "TIMEERROR";
 			}
 		}
 		Reserve T=new Reserve();
 		String tmp="select * from reserve where ss=0 and endTime=\""+starttime+"\"";
-		rs=DbUtils.getInstance().Query(tmp);
+		rs=la.Query(tmp);
 		System.out.println("tmp "+tmp);
 		tmp="delete from reserve where ss=0 and endtime=\""+starttime+"\"";
-		DbUtils.getInstance().Update(tmp);
+		la.Update(tmp);
+		T.setDate(this.reserve.getDate());
+		T.setTeacherId(teid);
+		T.setTeacherName(Tname);
 		try{
 			if(rs.next()){
 				T.setTeacherId(rs.getInt(1));
@@ -244,14 +262,16 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 				T.setStartTime(starttime);
 			}
 		}catch(Exception e){
-			e.printStackTrace();return "EEE";
+			e.printStackTrace();
+			la.close();
+			return "EEE";
 		}
 		
 		tmp="select * from reserve where ss=0 and starttime=\""+endtime+"\"";
-		rs=DbUtils.getInstance().Query(tmp);
+		rs=la.Query(tmp);
 		System.out.println("tmp "+tmp);
 		tmp="delete from reserve where ss=0 and starttime=\""+endtime+"\"";
-		DbUtils.getInstance().Update(tmp);
+		la.Update(tmp);
 		try{
 			if(rs.next()){
 				T.setTeacherId(rs.getInt(1));
@@ -272,7 +292,9 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 			}
 			T.Print();
 		}catch(Exception e){
-			e.printStackTrace();return "EEE";
+			e.printStackTrace();
+			la.close();
+			return "EEE";
 		}
 		String sql2 = "INSERT INTO reserve VALUES ("
 				+ T.getTeacherId() + ", '"
@@ -281,25 +303,28 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 				+ T.getEndTime() + "',null, '"
 				+ T.getDate() + "',0,\"无人预约\")";
 		System.out.println(sql2);
-		DbUtils.getInstance().Add(sql2);
+		la.Add(sql2);
 		
-		
+		la.close();
 		return "SUCCESS";
 	}
 
 	// here need jsp's reserveid
 	// follow the id to delete
 	public String DeleteReserve() {
+		DbUtils la = DbUtils.getInstance();
 		String sql = "delete from reserve where reserveid=" + reserveid;
-		DbUtils.getInstance().Update(sql);
+		la.Update(sql);
 		System.out.println(sql);
 		// RserverService.DeleteReserveById(reserveid);
+		la.close();
 		return "SUCCESS";
 	}
 
 	// !!need change here
 	public String AddReserve() {
 		// System.out.println(username);
+		DbUtils la = DbUtils.getInstance();
 		session = ActionContext.getContext().getSession();
 		System.out.println(this.reserve.getTeacherName() + "  name");
 		System.out.println(this.reserve.getStartTime() + "  "
@@ -309,14 +334,23 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 		System.out.println(stt + " " + edd);
 		if (edd - stt > 0 && edd - stt <= 15 * 60) {
 			session.put("adderror", "您的空闲时间有点短啊...");
+			la.close();
 			return "ERROR";
 		} else if (edd - stt <= 0) {
 			session.put("adderror", "还没开始就已经结束了？");
+			la.close();
 			return "ERROR";
 		}
 		String time[] = dateFormat.format(now).split(" ");
+		if(time[0].length()>this.reserve.getDate().length()){
+			session.put("adderror", "这一天已经过去了...");
+			la.close();
+			return "ERROR";
+		}
+		System.out.println(time[0]+" !! "+this.reserve.getDate());
 		if (time[0].compareTo(this.reserve.getDate()) > 0) {
 			session.put("adderror", "这一天已经过去了...");
+			la.close();
 			return "ERROR";
 		}
 		// System.out.println("301@!#$"+time[1]);
@@ -325,10 +359,12 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 			int cur = tranInt2(time[1]);
 			if (stt < cur || edd < cur) {
 				session.put("adderror", "这个时间已经过去了吧..");
+				la.close();
 				return "ERROR";
 			}
 			if (stt <= cur + 15 * 60) {
 				session.put("adderror", "这个时间有点近，学生准备不及啊");
+				la.close();
 				return "ERROR";
 			}
 		}
@@ -337,7 +373,7 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 		String dou = "select starttime,endtime from reserve where TeacherId="
 				+ this.reserve.getTeacherId() + " and Date=\""
 				+ this.reserve.getDate() + "\"";
-		ResultSet rs = DbUtils.getInstance().Query(dou);
+		ResultSet rs = la.Query(dou);
 		try {
 			while (rs.next()) {
 				Reserve reserve = new Reserve();
@@ -348,16 +384,19 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 				if (stt >= stt1 && stt <= edd1)
 					{
 					session.put("adderror", "好像和发布过的空闲时间有重叠哦~");
+					la.close();
 					return "ERROR";
 					}
 				if (edd >= stt1 && edd <= edd1)
 					{
 					session.put("adderror", "好像和发布过的空闲时间有重叠哦~");
+					la.close();
 					return "ERROR";
 					}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			la.close();
 			return "ERROR";
 		}
 		String sql = "INSERT INTO reserve VALUES ("
@@ -367,17 +406,19 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 				+ this.reserve.getEndTime() + "',null, '"
 				+ this.reserve.getDate() + "',0,\"无人预约\")";
 		System.out.println(sql);
-		DbUtils.getInstance().Add(sql);
+		la.Add(sql);
 		// RserverService.AddReserve(this.reserve);
+		la.close();
 		return "SUCCESS";
 	}
 
 	public String Tea() {
+		DbUtils la = DbUtils.getInstance();
 		String sql = "select * from reserve where TeacherId="
 				+ this.reserve.getTeacherId() + " and date=\""
 				+ this.reserve.getDate() + "\"";
 		ResultSet rs = null;
-		rs = DbUtils.getInstance().Query(sql);
+		rs = la.Query(sql);
 		System.out.println("351"+sql);
 		try {
 			list = new ArrayList<Reserve>();
@@ -403,16 +444,19 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("ERRORHERE");
+			la.close();
 			return "ERROR";
 		}
+		la.close();
 		return "SUCCESS";
 	}
 
 	public String Stu() {
+		DbUtils la = DbUtils.getInstance();
 		String sql = "select * from reserve where ss=\"" + this.reserve.getSs()
 				+ "\"";
 		ResultSet rs = null;
-		rs = DbUtils.getInstance().Query(sql);
+		rs = la.Query(sql);
 		System.out.println(sql);
 		try {
 			lists = new ArrayList<Reserve>();
@@ -435,8 +479,10 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			la.close();
 			return "ERROR";
 		}
+		la.close();
 		return "SUCCESS";
 	}
 
@@ -449,12 +495,13 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 	}
 
 	public String tRecent() {
+		DbUtils la = DbUtils.getInstance();
 		session = ActionContext.getContext().getSession();
-		int tid = (int) session.get("teacherid");
+		int tid = (Integer) session.get("teacherid");
 		String sql = "select * from reserve where TeacherId=" + tid
 				+ " and ss>0";
 		ResultSet rs = null;
-		rs = DbUtils.getInstance().Query(sql);
+		rs = la.Query(sql);
 		try {
 			list = new ArrayList<Reserve>();
 			while (rs.next()) {
@@ -472,8 +519,10 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			la.close();
 			return "ERROR";
 		}
+		la.close();
 		return "SUCCESS";
 	}
 
@@ -486,11 +535,12 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 
 	public String sRecent() {
 		session = ActionContext.getContext().getSession();
-		int tid = (int) session.get("studentid");
+		DbUtils la = DbUtils.getInstance();
+		int tid = (Integer) session.get("studentid");
 		String sql = "select * from reserve where StudentId=" + tid
 				+ " and ss>0";
 		ResultSet rs = null;
-		rs = DbUtils.getInstance().Query(sql);
+		rs = la.Query(sql);
 		try {
 			list = new ArrayList<Reserve>();
 			while (rs.next()) {
@@ -508,8 +558,10 @@ public class ReserveAction extends ActionSupport implements ModelDriven {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			la.close();
 			return "ERROR";
 		}
+		la.close();
 		return "SUCCESS";
 	}
 }

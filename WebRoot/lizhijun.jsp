@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="s_index.jsp">
+				<a class="brand" href="<%=basePath %>chat/sviewunreadchat.action">
 
 				<img src="media/image/logo.png" alt="logo" />
 

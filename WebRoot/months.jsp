@@ -60,7 +60,7 @@ $(function() {
 	  for(var j=1;j<=monthsNum[m];j++){
 		  $("li.month-cell span").eq(f).text(j).parent().addClass("pink");
 		  $("li.month-cell span").eq(f).html("<a href=<%=basePath %>jdbc/sviewbyteacher?date="+FullYear+"-"+month+"-"+(f)+"&"+
-					"teacherId="+"1"+" target='showframe' style='text-decoration:none'>"+j+"</a>");
+					"teacherId="+<%=request.getParameter("teacherid") %>+" target='showframe' style='text-decoration:none'>"+j+"</a>");
 	  f++;
 	  }
 	  

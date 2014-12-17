@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="index.html">
+					<a class="brand" href="<%=basePath %>chat/tviewunreadchat.action">
 
 				<img src="media/image/logo.png" alt="logo" />
 
@@ -184,7 +184,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<li class="">
 
-					<a href="<%=basePath %>tprofile.jsp">
+					<a href="<%=basePath%>jdbc/tviewprofile?ttid=<%=session.getAttribute("teacherId") %>">
 
 					<i class="icon-file-text"></i> 
 
@@ -402,7 +402,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<i class="icon-home"></i>
 
-								<a href="index.html">个人主页</a> 
+								<a href="<%=basePath %>t_index.jsp">个人主页</a> 
 
 								<i class="icon-angle-right"></i>
 

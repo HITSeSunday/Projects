@@ -100,7 +100,10 @@
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="<%=basePath%>t_index.jsp"> 工大约约约 </a>
+				<a class="brand" href="<%=basePath %>t_index.jsp"> <img
+					src="<%=basePath %>media/image/logo.png" alt="logo" />
+
+				</a>
 
 				<!-- END LOGO -->
 
@@ -284,8 +287,8 @@
 
 				</a></li>
 
-				<li class=""><a href="<%=basePath%>tprofile.jsp"> <i
-						class="icon-file-text"></i> <span class="title">我的信息</span> <span
+				<li class=""><a href="<%=basePath%>jdbc/tviewprofile?ttid=<%=session.getAttribute("teacherId") %>"> 
+				<i class="icon-file-text"></i> <span class="title">我的信息</span> <span
 						class="arrow "></span>
 
 				</a></li>
@@ -413,7 +416,7 @@
 
 						<h3 class="page-title">
 
-							欢迎回来，<%=session.getAttribute("teachername")%>老师 <small>工大约约约</small>
+							欢迎回来 <small>上次登录：<%=session.getAttribute("trecent") %></small>
 
 						</h3>
 
@@ -556,9 +559,6 @@
 	<script src="<%=basePath%>media/js/daterangepicker.js"
 		type="text/javascript"></script>
 
-	<script src="<%=basePath%>media/js/jquery.gritter.js"
-		type="text/javascript"></script>
-
 	<script src="<%=basePath%>media/js/fullcalendar.min.js"
 		type="text/javascript"></script>
 
@@ -595,7 +595,7 @@
 
 			Index.initMiniCharts();
 
-			Index.initDashboardDaterange();
+			//Index.initDashboardDaterange();
 
 			Index.initIntro();
 

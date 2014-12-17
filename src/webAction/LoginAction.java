@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -16,6 +18,8 @@ public class LoginAction extends ActionSupport {
 	private String password;
 	private String username;
 	private Map session;
+	Date now = new Date();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public String getUsername() {
 		return username;
@@ -29,16 +33,22 @@ public class LoginAction extends ActionSupport {
 		session = ActionContext.getContext().getSession();
 		ResultSet rs = null;
 		String result = "";
-		Connection connection = DbUtils.getConnection();
+		DbUtils la = DbUtils.getInstance();
+
 		try {
-			Statement state = connection.createStatement();
-			String sql = "select password,teachername,teacherid from user_teacher where username=\""
+			String sql = "select password,teachername,teacherid,recent from user_teacher where username=\""
 					+ username + "\"";
 			System.out.println(sql);
-			rs = state.executeQuery(sql);
-			System.out.println("25");
+			rs = la.Query(sql);
+			//la.close();
+			String las=null;
 			if (rs.next()) {
-				System.out.println("53");
+				las=rs.getString(4);
+				String now1=dateFormat.format(now);
+				if(las==null){
+					las=now1;
+				}
+				
 				String input = String.valueOf(rs.getString(1));
 				System.out.println("input: " + input);
 				System.out.println("pass: " + password + "  " + input);
@@ -48,17 +58,23 @@ public class LoginAction extends ActionSupport {
 					int teacherId = rs.getInt(3);
 					session.put("teachername", teacherName);
 					session.put("teacherId", teacherId);
-
+					session.put("trecent", las);
+					String sql1="update user_teacher set recent=\""+now1+"\"where teacherid="+teacherId;
+					la.Update(sql1);
+					la.close();
 					return "SUCCESS";
 				} else {
-					return "PWD";
+					la.close();
+					session.put("tloginerror", "密码错误！");
+					return "ERROR";
 				}
 			} else {
+				la.close();
+				session.put("tloginerror", "用户名不存在！");
 				return "ERROR";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("67!!");
 			e.printStackTrace();
 			return "ERROR";
 		}
@@ -70,16 +86,20 @@ public class LoginAction extends ActionSupport {
 		session = ActionContext.getContext().getSession();
 		ResultSet rs = null;
 		String result = "";
-		Connection connection = DbUtils.getConnection();
+		DbUtils la = DbUtils.getInstance();
+		// Connection connection = DbUtils.getConnection();
 		try {
-			Statement state = connection.createStatement();
-			String sql = "select password,studentname,stuid from user_student where username=\""
+			// Statement state = connection.createStatement();
+			String sql = "select password,studentname,stuid,recent from user_student where username=\""
 					+ username + "\"";
 			System.out.println(sql);
-			rs = state.executeQuery(sql);
+			rs = la.Query(sql);
+			// //la.close();
+			String las=null;
 			System.out.println("25");
 			if (rs.next()) {
 				System.out.println("53");
+				
 				String input = String.valueOf(rs.getString(1));
 				System.out.println("input: " + input);
 				System.out.println("pass: " + password + "  " + input);
@@ -90,17 +110,36 @@ public class LoginAction extends ActionSupport {
 					int ssid = rs.getInt(3);
 					System.out.println(ssid);
 					session.put("studentid", ssid);
+					String now1 = dateFormat.format(now);
+					las=rs.getString(4);
+					if(las==null){
+						las=now1;
+					}
+					System.out.println("last login "+las);
+					session.put("srecent", las);
+					
+					String sql1 = "update user_student set recent=\"" + now1
+							+ "\" where stuid="+ssid;
+					la.Update(sql1);
+					la.close();
 					return "SUCCESS";
 				} else {
-					return "PWD";
+					la.close();
+					session.put("sloginerror", "密码错误！");
+					return "ERROR";
 				}
 			} else {
+				 la.close();
+				 session.put("sloginerror", "用户名不存在！");
+				 System.out.println("yonghum");
 				return "ERROR";
 			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("67!!");
 			e.printStackTrace();
+			la.close();
 			return "ERROR";
 		}
 	}
@@ -120,7 +159,8 @@ public class LoginAction extends ActionSupport {
 
 		ResultSet rs = null;
 		System.out.println(sql);
-		rs = DbUtils.getInstance().Query(sql);
+		DbUtils la = DbUtils.getInstance();
+		rs = la.Query(sql);
 		try {
 			while (rs.next()) {
 				int tmp = rs.getInt(1);
@@ -130,6 +170,7 @@ public class LoginAction extends ActionSupport {
 		} catch (Exception e) {
 			ans = -1;
 		}
+		la.close();
 		return ans;
 	}
 
@@ -138,7 +179,10 @@ public class LoginAction extends ActionSupport {
 		String sql = "select teacherid from user_teacher where username=\""
 				+ name + "\"";
 		ResultSet rs = null;
-		rs = DbUtils.getInstance().Query(sql);
+		DbUtils la = DbUtils.getInstance();
+		rs = la.Query(sql);
+		//la.close();
+		// rs = DbUtils.getInstance().Query(sql);
 		try {
 			while (rs.next()) {
 				int tmp = rs.getInt(1);
@@ -148,6 +192,7 @@ public class LoginAction extends ActionSupport {
 		} catch (Exception e) {
 			ans = -1;
 		}
+		la.close();
 		return ans;
 	}
 }

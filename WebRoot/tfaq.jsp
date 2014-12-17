@@ -78,8 +78,9 @@
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="index.html"> <img
-					src="media/image/logo.png" alt="logo" />
+				<a class="brand" href="<%=basePath %>chat/tviewunreadchat.action">
+
+				<img src="media/image/logo.png" alt="logo" />
 
 				</a>
 
@@ -171,7 +172,7 @@
 
 				</a></li>
 
-				<li class=""><a href="<%=basePath%>t_profile.jsp"> <i
+				<li class=""><a href="<%=basePath%>jdbc/tviewprofile?ttid=<%=session.getAttribute("teacherId") %>"> <i
 						class="icon-file-text"></i> <span class="title">我的信息</span> <span
 						class="arrow "></span>
 
@@ -327,7 +328,7 @@
 
 						<ul class="breadcrumb">
 
-							<li><i class="icon-home"></i> <a href="index.html">个人主页</a>
+							<li><i class="icon-home"></i> <a href="<%=basePath %>t_index.jsp">个人主页</a>
 
 								<i class="icon-angle-right"></i></li>
 
@@ -454,7 +455,7 @@
 
 												<div class="accordion-inner">
 
-													①支持老师与学生登录，更新个人资料；<br /> ②支持老师发布自己的空闲时间，以类似日历的形式；<br />
+													①支持老师与学生登录，老师可以更新个人资料；<br /> ②支持老师发布自己的空闲时间，以类似日历的形式；<br />
 													③支持学生预约空闲时间；<br /> ④支持提醒，距预约时间提前一段时间提醒；<br />
 													⑤支持预约,与老师的私信留言；
 												</div>

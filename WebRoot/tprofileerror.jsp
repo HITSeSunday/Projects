@@ -18,7 +18,9 @@
 <!--<![endif]-->
 
 <!-- BEGIN HEAD -->
-
+<Script Language="JavaScript">
+alert("<%=session.getAttribute("tchangeerror") %>");
+</Script>
 <head>
 
 <meta charset="utf-8" />
@@ -101,9 +103,8 @@
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="<%=basePath %>chat/tviewunreadchat.action">
-
-				<img src="<%=basePath %>media/image/logo.png" alt="logo" />
+				<a class="brand" href="<%=basePath %>chat/tviewunreadchat.action"> <img
+					src="<%=basePath%>media/image/logo.png" alt="logo" />
 
 				</a>
 
@@ -468,7 +469,7 @@
 												<li><span>办公室:</span>
 												<td><s:property value="#teacher.placename" /></td></li>
 
-												<li><span>上次登录:</span> <%=session.getAttribute("trecent") %></li>
+												<li><span>上次登录:</span<td><s:property value="#teacher.recent" /></td></li>
 
 
 
@@ -814,6 +815,7 @@
 
 									<!--end add-portfolio-->
 
+								
 
 									<!--end row-fluid-->
 
@@ -821,7 +823,7 @@
 
 									<!--end row-fluid-->
 
-						
+									
 
 									<!--end row-fluid-->
 

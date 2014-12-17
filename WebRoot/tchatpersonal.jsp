@@ -88,7 +88,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="../s_index.jsp"> 工大约约约 </a>
+				<a class="brand" href="<%=basePath %>chat/tviewunreadchat.action">
+
+				<img src="<%=basePath %>media/image/logo.png" alt="logo" />
+
+				</a>
 
 				<!-- END LOGO -->
 
@@ -169,63 +173,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 				<li class="start "><a
-					href="<%=basePath %>chat/tviewunreadchat.action"> <i
-						class="icon-home"></i> <span class="title">本站简介</span>
+					href="<%=basePath %>chat/tviewunreadchat.action"> 
+					<i class="icon-home"></i> <span class="title">本站简介</span>
 
 				</a></li>
 
-				<li class=""><a href="javascript:;"> <i class="icon-cogs"></i>
-
-						<span class="title">教师预约</span> <span class="arrow "></span>
-
-				</a>
-
-					<ul class="sub-menu">
-
-						<li><a href="lizhijun.html"> 李治军</a></li>
-
-						<li><a href="layout_horizontal_menu1.html"> 王忠杰</a></li>
-
-						<li><a href="layout_horizontal_menu2.html"> Horzontal
-								Menu 2</a></li>
-
-						<li><a href="layout_promo.html"> Promo Page</a></li>
-
-						<li><a href="layout_email.html"> Email Templates</a></li>
-
-						<li><a href="layout_ajax.html"> Content Loading via Ajax</a>
-
-						</li>
-
-						<li><a href="layout_sidebar_closed.html"> Sidebar Closed
-								Page</a></li>
-
-						<li><a href="layout_blank_page.html"> Blank Page</a></li>
-
-						<li><a href="layout_boxed_page.html"> Boxed Page</a></li>
-
-						<li><a href="layout_boxed_not_responsive.html">
-
-								Non-Responsive Boxed Layout</a></li>
-
-					</ul></li>
 
 
 				<li class=""><a
-					href="../jdbc/stuview?ss=<%=session.getAttribute("studentid") %>">
+					href="<%=basePath %>t_calendar.jsp">
 
 						<i class="icon-table"></i> <span class="title">我的日历</span> <span
 						class="arrow "></span>
 
 				</a></li>
-				<li class=""><a href="<%=basePath%>tprofile.jsp"> <i
+				<li class=""><a href="<%=basePath%>jdbc/tviewprofile?ttid=<%=session.getAttribute("teacherId") %>"> <i
 						class="icon-file-text"></i> <span class="title">我的信息</span> <span
 						class="arrow "></span>
 
 				</a></li>
 				<li class="active "><a href="#"> <i class="icon-briefcase"></i>
 
-						<span class="title">畅所欲言</span> <span class="selected"></span> <span
+						<span class="title">私聊频道</span> <span class="selected"></span> <span
 						class="arrow open"></span>
 
 				</a></li>
@@ -235,168 +204,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="title">小伙伴们</span> <span class="arrow "></span>
 
 				</a>
-
-					<ul class="sub-menu">
-
-						<li><a href="extra_profile.html"> User Profile</a></li>
-
-						<li><a href="extra_lock.html"> Lock Screen</a></li>
-
-						<li><a href="extra_faq.html"> FAQ</a></li>
-
-						<li><a href="inbox.html"> Inbox</a></li>
-
-						<li><a href="extra_search.html"> Search Results</a></li>
-
-						<li><a href="extra_invoice.html"> Invoice</a></li>
-
-						<li><a href="extra_pricing_table.html"> Pricing Tables</a></li>
-
-						<li><a href="extra_image_manager.html"> Image Manager</a></li>
-
-						<li><a href="extra_404_option1.html"> 404 Page Option 1</a>
-
-						</li>
-
-						<li><a href="extra_404_option2.html"> 404 Page Option 2</a>
-
-						</li>
-
-						<li><a href="extra_404_option3.html"> 404 Page Option 3</a>
-
-						</li>
-
-						<li><a href="extra_500_option1.html"> 500 Page Option 1</a>
-
-						</li>
-
-						<li><a href="extra_500_option2.html"> 500 Page Option 2</a>
-
-						</li>
-
-					</ul></li>
-
-				<li><a class="active" href="javascript:;"> <i
-						class="icon-sitemap"></i> <span class="title">3 Level Menu</span>
-
-						<span class="arrow "></span>
-
-				</a>
-
-					<ul class="sub-menu">
-
-						<li><a href="javascript:;"> Item 1 <span class="arrow"></span>
-
-						</a>
-
-							<ul class="sub-menu">
-
-								<li><a href="#">Sample Link 1</a></li>
-
-								<li><a href="#">Sample Link 2</a></li>
-
-								<li><a href="#">Sample Link 3</a></li>
-
-							</ul></li>
-
-						<li><a href="javascript:;"> Item 1 <span class="arrow"></span>
-
-						</a>
-
-							<ul class="sub-menu">
-
-								<li><a href="#">Sample Link 1</a></li>
-
-								<li><a href="#">Sample Link 1</a></li>
-
-								<li><a href="#">Sample Link 1</a></li>
-
-							</ul></li>
-
-						<li><a href="#"> Item 3 </a></li>
-
-					</ul></li>
-
+				</li>
 				<li><a href="<%=basePath %>tfaq.jsp"> <i
 						class="icon-folder-open"></i> <span class="title">关于我们</span> <span
 						class="arrow "></span>
 
 				</a>
 
-					<ul class="sub-menu">
-
-						<li><a href="javascript:;"> <i class="icon-cogs"></i>
-
-								Item 1 <span class="arrow"></span>
-
-						</a>
-
-							<ul class="sub-menu">
-
-								<li><a href="javascript:;"> <i class="icon-user"></i>
-
-										Sample Link 1 <span class="arrow"></span>
-
-								</a>
-
-									<ul class="sub-menu">
-
-										<li><a href="#"><i class="icon-remove"></i> Sample
-												Link 1</a></li>
-
-										<li><a href="#"><i class="icon-pencil"></i> Sample
-												Link 1</a></li>
-
-										<li><a href="#"><i class="icon-edit"></i> Sample Link
-												1</a></li>
-
-									</ul></li>
-
-								<li><a href="#"><i class="icon-user"></i> Sample Link 1</a></li>
-
-								<li><a href="#"><i class="icon-external-link"></i>
-										Sample Link 2</a></li>
-
-								<li><a href="#"><i class="icon-bell"></i> Sample Link 3</a></li>
-
-							</ul></li>
-
-						<li><a href="javascript:;"> <i class="icon-globe"></i>
-
-								Item 2 <span class="arrow"></span>
-
-						</a>
-
-							<ul class="sub-menu">
-
-								<li><a href="#"><i class="icon-user"></i> Sample Link 1</a></li>
-
-								<li><a href="#"><i class="icon-external-link"></i>
-										Sample Link 1</a></li>
-
-								<li><a href="#"><i class="icon-bell"></i> Sample Link 1</a></li>
-
-							</ul></li>
-
-						<li><a href="#"> <i class="icon-folder-open"></i> Item 3
-
-						</a></li>
-
-					</ul></li>
-
 				<li class=""><a href="<%=basePath %>tcontact.jsp"> <i
-						class="icon-user"></i> <span class="title">联系我们</span> <span
+						class="icon-phone"></i> <span class="title">联系我们</span> <span
 						class="arrow "></span>
 
 				</a>
 
-					<ul class="sub-menu">
-
-						<li><a href="login.html"> Login Form 1</a></li>
-
-						<li><a href="login_soft.html"> Login Form 2</a></li>
-
-					</ul></li>
 
 
 			</ul>
@@ -500,7 +320,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<h3 class="page-title">
 
-							畅所欲言<small>我们的目标是没有和谐！</small>
+							私聊频道<small>师生交流更方便！</small>
 
 						</h3>
 
@@ -510,7 +330,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								href="<%=basePath %>chat/tviewunreadchat.action">个人主页</a> <i
 								class="icon-angle-right"></i></li>
 
-							<li><a href="#">畅所欲言</a></li>
+							<li><a href="#">私聊频道</a></li>
 
 							<li class="pull-right no-text-shadow">
 
@@ -595,7 +415,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</ul>
 
 							</div>
-							<form method="post" action="ssendpersonalchat">
+							<form method="post" action="tsendpersonalchat">
 								<div class="chat-form">
 
 									<div class="input-cont">

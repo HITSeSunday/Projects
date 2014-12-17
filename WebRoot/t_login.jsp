@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Login Options - Login Form 2</title>
+	<title>教师登录</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -29,31 +29,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 
-	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
 
-	<link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-	<link href="media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/style-metro.css" rel="stylesheet" type="text/css"/>
 
-	<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/style.css" rel="stylesheet" type="text/css"/>
 
-	<link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
 
-	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="<%=basePath %>media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 
-	<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 
 	<!-- END GLOBAL MANDATORY STYLES -->
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
 
-	<link href="media/css/login-soft.css" rel="stylesheet" type="text/css"/>
+	<link href="<%=basePath %>media/css/login-soft.css" rel="stylesheet" type="text/css"/>
 
 	<!-- END PAGE LEVEL STYLES -->
 
-	<link rel="shortcut icon" href="media/image/favicon.ico" />
+	<link rel="shortcut icon" href="<%=basePath %>media/image/favicon.ico" />
 
 </head>
 
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<button class="close" data-dismiss="alert"></button>
 
-				<span>Enter any username and password.</span>
+				<span>输入用户名和密码.</span>
 
 			</div>
 
@@ -128,12 +128,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 
 			</div>
-
+	
 			<div class="form-actions">
 
 				<label class="checkbox">
 
-				<input type="checkbox" name="remember" value="1"/> Remember me
+				<input type="checkbox" name="remember" value="1"/> 记住我
 
 				</label>
 
@@ -151,9 +151,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<p>
 
-					no worries, click <a href="javascript:;" class="" id="forget-password">here</a>
+					别担心 <a href="javascript:;" class="" id="forget-password">点此</a>
 
-					to reset your password.
+					重置密码
 
 				</p>
 
@@ -163,9 +163,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<p>
 
-					还没用户名 ?&nbsp; 
+					还没有账号 ?&nbsp; 
 
-					<a href="javascript:;" id="register-btn" class="">点击注册！</a>
+					<a href="javascript:;" id="register-btn" class="">注册账号！</a>
 
 				</p>
 
@@ -177,11 +177,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN FORGOT PASSWORD FORM -->
 
-		<form class="form-vertical forget-form" action="index.html">
+		<form class="form-vertical forget-form" action="#">
 
-			<h3 class="">Forget Password ?</h3>
+			<h3 class="">忘记密码？</h3>
 
-			<p>Enter your e-mail address below to reset your password.</p>
+			<p>输入Email来重置密码</p>
 
 			<div class="control-group">
 
@@ -227,9 +227,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h4>尊敬的老师：</h4>
 			&nbsp &nbsp 为了防止出现恶意注册的情况，请您联系我们，我们会第一时间帮您注册,
 			希望本站能帮助您和学生进行更好的交流沟通<br/>
-			&nbsp &nbsp 联系电话： 18746034529 小尹同学<br/>
-			&nbsp &nbsp 联系电话： 18846831273 姚同学<br/>
-			&nbsp &nbsp 联系电话： 18646085586 牟同学<br/>
+			&nbsp &nbsp 小尹同学： 530295860@qq.com <br/>
+			&nbsp &nbsp  姚同学： yyjhit@sina.com<br/>
+			&nbsp &nbsp 牟同学： 549595715@qq.com <br/>
 
 
 			
@@ -240,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<button id="register-back-btn" type="button" class="btn">
 
-				<i class="m-icon-swapleft"></i>  Back
+				<i class="m-icon-swapleft"></i>  返回
 
 				</button>
         
@@ -259,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="copyright">
 
-		2013 &copy; Metronic - Admin Dashboard Template.
+		2014 &copy; HITSunday
 
 	</div>
 
@@ -269,47 +269,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- BEGIN CORE PLUGINS -->
 
-	<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 
 	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 
-	<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+	<script src="<%=basePath %>media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
 
-	<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/bootstrap.min.js" type="text/javascript"></script>
 	
 	<!--[if lt IE 9]>
 
-	<script src="media/js/excanvas.min.js"></script>
+	<script src="<%=basePath %>media/js/excanvas.min.js"></script>
 
-	<script src="media/js/respond.min.js"></script>  
+	<script src="<%=basePath %>media/js/respond.min.js"></script>  
 
 	<![endif]-->   
 
-	<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+	<script src="<%=basePath %>media/js/jquery.blockui.min.js" type="text/javascript"></script>  
 
-	<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/jquery.cookie.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+	<script src="<%=basePath %>media/js/jquery.uniform.min.js" type="text/javascript" ></script>
 
 	<!-- END CORE PLUGINS -->
 
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 
-	<script src="media/js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/jquery.validate.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.backstretch.min.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/jquery.backstretch.min.js" type="text/javascript"></script>
 
 	<!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
-	<script src="media/js/app.js" type="text/javascript"></script>
+	<script src="<%=basePath %>media/js/app.js" type="text/javascript"></script>
 
-	<script src="media/js/login-soft.js" type="text/javascript"></script>      
+	<script src="<%=basePath %>media/js/login-soft.js" type="text/javascript"></script>      
 
 	<!-- END PAGE LEVEL SCRIPTS --> 
 

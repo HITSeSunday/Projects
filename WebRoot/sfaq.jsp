@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Extra - FAQ</title>
+	<title>关于我们</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -68,9 +68,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="index.html">
+			<a class="brand" href="<%=basePath %>chat/sviewunreadchat.action">
 
-				<img src="media/image/logo.png" alt="logo" />
+				<img src="<%=basePath %>media/image/logo.png" alt="logo" />
 
 				</a>
 
@@ -182,85 +182,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<ul class="sub-menu">
 
+						
+<s:iterator value="#session.listt" var="ssb" status="std">
+<td>
 						<li >
 
-							<a href="<%=basePath %>lizhijun.jsp">
+							<tr><a href="<%=basePath %>jdbc/sviewprofile?ttid=<s:property value="#ssb.teacherid" />"><tr>
 
-							李治军</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_buttons.html">
-
-							Buttons</a>
+							<tr><s:property value="#ssb.teachername" /></tr></a>
 
 						</li>
+</td>
+</s:iterator>
 
-						<li >
-
-							<a href="ui_modals.html">
-
-							Enhanced Modals</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_tabs_accordions.html">
-
-							Tabs & Accordions</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_jqueryui.html">
-
-							jQuery UI Components</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_sliders.html">
-
-							Sliders</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_tiles.html">
-
-							Tiles</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_typography.html">
-
-							Typography</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_tree.html">
-
-							Tree View</a>
-
-						</li>
-
-						<li >
-
-							<a href="ui_nestable.html">
-
-							Nestable List</a>
-
-						</li>
+						
 
 					</ul>
 
@@ -639,7 +574,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 												<div class="accordion-inner">
 
-													①支持老师与学生登录，更新个人资料；<br/>
+													①支持老师与学生登录，老师可以更新个人资料；<br/>
 													②支持老师发布自己的空闲时间，以类似日历的形式；<br/>
 													③支持学生预约空闲时间；<br/>
 													④支持提醒，距预约时间提前一段时间提醒；<br/>

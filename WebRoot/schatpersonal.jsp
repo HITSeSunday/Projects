@@ -90,7 +90,11 @@
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="../s_index.jsp"> 工大约约约 </a>
+				<a class="brand" href="<%=basePath %>chat/sviewunreadchat.action">
+
+				<img src="<%=basePath %>media/image/logo.png" alt="logo" />
+
+				</a>
 
 				<!-- END LOGO -->
 
@@ -179,10 +183,18 @@
 
 					<ul class="sub-menu">
 
-						<li><a href="lizhijun.html"> 李治军</a></li>
+						
+<s:iterator value="#session.listt" var="ssb" status="std">
+<td>
+						<li >
 
-						<li><a href="layout_horizontal_menu1.html"> 王忠杰</a></li>
+							<tr><a href="<%=basePath %>jdbc/sviewprofile?ttid=<s:property value="#ssb.teacherid" />"><tr>
 
+							<tr><s:property value="#ssb.teachername" /></tr></a>
+
+						</li>
+</td>
+</s:iterator>
 					</ul></li>
 
 
@@ -194,7 +206,7 @@
 
 				<li class="active "><a href="#"> <i class="icon-briefcase"></i>
 
-						<span class="title">畅所欲言</span> <span class="selected"></span> <span
+						<span class="title">私聊频道</span> <span class="selected"></span> <span
 						class="arrow open"></span>
 
 				</a></li>
@@ -205,45 +217,7 @@
 
 				</a>
 
-					<ul class="sub-menu">
-
-						<li><a href="extra_profile.html"> User Profile</a></li>
-
-						<li><a href="extra_lock.html"> Lock Screen</a></li>
-
-						<li><a href="extra_faq.html"> FAQ</a></li>
-
-						<li><a href="inbox.html"> Inbox</a></li>
-
-						<li><a href="extra_search.html"> Search Results</a></li>
-
-						<li><a href="extra_invoice.html"> Invoice</a></li>
-
-						<li><a href="extra_pricing_table.html"> Pricing Tables</a></li>
-
-						<li><a href="extra_image_manager.html"> Image Manager</a></li>
-
-						<li><a href="extra_404_option1.html"> 404 Page Option 1</a>
-
-						</li>
-
-						<li><a href="extra_404_option2.html"> 404 Page Option 2</a>
-
-						</li>
-
-						<li><a href="extra_404_option3.html"> 404 Page Option 3</a>
-
-						</li>
-
-						<li><a href="extra_500_option1.html"> 500 Page Option 1</a>
-
-						</li>
-
-						<li><a href="extra_500_option2.html"> 500 Page Option 2</a>
-
-						</li>
-
-					</ul></li>
+					</li>
 
 				<li><a href="<%=basePath%>sfaq.jsp"> <i
 						class="icon-folder-open"></i> <span class="title">关于我们</span> <span
@@ -252,7 +226,7 @@
 				</a></li>
 
 				<li class=""><a href="<%=basePath%>scontact.jsp"> <i
-						class="icon-user"></i> <span class="title">联系我们</span> <span
+						class="icon-phone"></i> <span class="title">联系我们</span> <span
 						class="arrow "></span>
 
 				</a></li>
@@ -359,7 +333,7 @@
 
 						<h3 class="page-title">
 
-							畅所欲言<small>我们的目标是没有和谐！</small>
+							私聊频道<small>师生交流更方便！</small>
 
 						</h3>
 
@@ -369,7 +343,7 @@
 								href="<%=basePath%>chat/sviewunreadchat.action">个人主页</a> <i
 								class="icon-angle-right"></i></li>
 
-							<li><a href="#">畅所欲言</a></li>
+							<li><a href="#">私聊频道</a></li>
 
 							<li class="pull-right no-text-shadow">
 

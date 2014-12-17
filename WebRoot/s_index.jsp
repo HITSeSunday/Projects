@@ -1,7 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,model.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+List<Teacher> listt = (List<Teacher>)session.getAttribute("listt");
 %>
 <%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
@@ -15,13 +16,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- BEGIN HEAD -->
 
 <head>
-<% 
+<!-- <% 
   if(request.getAttribute("checkunread")=="1") 
   { 
   response.sendRedirect("chat/sviewunreadchat.action"); 
    } 
   
-  %> 
+  %>--> 
 
 	<meta charset="utf-8" />
 
@@ -89,9 +90,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="#">
+				<a class="brand" href="#"> <img
+					src="<%=basePath %>media/image/logo.png" alt="logo" />
 
-				工大约约约
+				</a>
+
+				
 
 				</a>
 
@@ -110,12 +114,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- BEGIN TOP NAVIGATION MENU -->              
 
 				<ul class="nav pull-right">
-
-					<!-- BEGIN NOTIFICATION DROPDOWN -->   
-
-					
-
-					<!-- END NOTIFICATION DROPDOWN -->
 
 					<!-- BEGIN INBOX DROPDOWN -->
 
@@ -308,23 +306,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<ul class="sub-menu">
 
+<s:iterator value="#session.listt" var="ssb" status="std">
+<td>
 						<li >
 
-							<a href="<%=basePath %>lizhijun.jsp">
+							<tr><a href="<%=basePath %>jdbc/sviewprofile?ttid=<s:property value="#ssb.teacherid" />"><tr>
 
-							李治军</a>
-
-						</li>
-
-						<li >
-
-							<a href="wangzhongjie.html">
-
-							王忠杰</a>
+							<tr><s:property value="#ssb.teachername" /></tr></a>
 
 						</li>
-
-
+</td>
+</s:iterator>
 					</ul>
 
 				</li>
@@ -424,23 +416,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
-			<div id="portlet-config" class="modal hide">
-
-				<div class="modal-header">
-
-					<button data-dismiss="modal" class="close" type="button"></button>
-
-					<h3>Widget Settings</h3>
-
-				</div>
-
-				<div class="modal-body">
-
-					Widget settings form goes here
-
-				</div>
-
-			</div>
 
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
@@ -512,7 +487,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<h3 class="page-title">
 
-							本站简介 <small>工大约约约</small>
+							欢迎回来 <small>上次登录：<%=session.getAttribute("srecent") %></small>
 
 						</h3>
 
@@ -642,8 +617,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<script src="<%=basePath %>media/js/daterangepicker.js" type="text/javascript"></script>     
 
-	<script src="<%=basePath %>media/js/jquery.gritter.js" type="text/javascript"></script>
-
 	<script src="<%=basePath %>media/js/fullcalendar.min.js" type="text/javascript"></script>
 
 	<script src="<%=basePath %>media/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
@@ -678,7 +651,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		   Index.initMiniCharts();
 
-		   Index.initDashboardDaterange();
+		   //Index.initDashboardDaterange();
 
 		   Index.initIntro();
 

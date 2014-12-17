@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<meta charset="utf-8" />
 
-	<title>学生登录</title>
+	<title>教师注册</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -60,8 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- BEGIN BODY -->
 
-<body class="login" >
-	
+<body class="login">
 
 	<!-- BEGIN LOGO -->
 
@@ -79,154 +78,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN LOGIN FORM -->
 
-		<form class="form-vertical login-form" method="post" action="<%=basePath %>login/studentlogin">
+		<form class="form-vertical login-form" method="post" action="<%=basePath %>login/teacherregister"><h3 class="">教师注册</h3>
 
-			<h3 class="form-title">学生登录</h3>
+			<p>请输入您的账号信息:</p>
 
-			<div class="alert alert-error hide">
-
-				<button class="close" data-dismiss="alert"></button>
-
-				<span>Enter any username and password.</span>
-
-			</div>
-
-			<div class="control-group">
-
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-
-				<label class="control-label visible-ie8 visible-ie9">用户名</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-user"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">密码</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-lock"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="form-actions">
-
-				<label class="checkbox">
-
-				<input type="checkbox" name="remember" value="1"/> 记住我
-
-				</label>
-
-				<button type="submit" class="btn blue pull-right">
-
-				Login <i class="m-icon-swapright m-icon-white"></i>
-
-				</button>            
-
-			</div>
-
-			<div class="forget-password">
-
-				<h4>忘记密码？</h4>
-
-				<p>
-
-					别担心， <a href="javascript:;" class="" id="forget-password">点此</a>
-
-					重置密码
-
-				</p>
-
-			</div>
-
-			<div class="create-account">
-
-				<p>
-
-					还没有账号 ？&nbsp; 
-
-					<a href="javascript:;" id="register-btn" class="">注册账号</a>
-
-				</p>
-
-			</div>
-
-		</form>
-
-		<!-- END LOGIN FORM -->        
-
-		<!-- BEGIN FORGOT PASSWORD FORM -->
-
-		<form class="form-vertical forget-form" action="">
-
-			<h3 class="">忘记密码？</h3>
-
-			<p>输入你的注册邮箱来重置密码</p>
-
-			<div class="control-group">
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-envelope"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="email" placeholder="Email" name="email" />
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="form-actions">
-
-				<button type="button" id="back-btn" class="btn">
-
-				<i class="m-icon-swapleft"></i> 后退
-
-				</button>
-
-				<button type="submit" class="btn blue pull-right">
-
-				提交 <i class="m-icon-swapright m-icon-white"></i>
-
-				</button>            
-
-			</div>
-
-		</form>
-
-		<!-- END FORGOT PASSWORD FORM -->
-
-		<!-- BEGIN REGISTRATION FORM -->
-
-		<form class="form-vertical register-form" action="<%=basePath %>login/studentregister" method="post">
-
-			<h3 class="">注册</h3>
-
-			<p>输入您的账号信息:</p>
-			
 			<div class="control-group">
 
 				<label class="control-label visible-ie8 visible-ie9">用户名</label>
@@ -244,10 +99,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 
 			</div>
-			
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">真实姓名</label>
+				<label class="control-label visible-ie8 visible-ie9">姓名</label>
 
 				<div class="controls">
 
@@ -255,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="真实姓名" name="studentname"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="姓名" name="tne"/>
 
 					</div>
 
@@ -264,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">学号</label>
+				<label class="control-label visible-ie8 visible-ie9">任教科目</label>
 
 				<div class="controls">
 
@@ -272,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" placeholder="学号" name="studentnumber"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="任教科目" name="tclass"/>
 
 					</div>
 
@@ -300,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+				<label class="control-label visible-ie8 visible-ie9">再次输入</label>
 
 				<div class="controls">
 
@@ -328,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<i class="icon-envelope"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name=""/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email"/>
 
 					</div>
 
@@ -336,42 +190,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			</div>
 
-			<div class="control-group">
-
-				<div class="controls">
-
-					<label class="checkbox">
-
-					<input type="checkbox" name="tnc"/> 我同意 <a href="#">用户条款</a> 和 <a href="#">隐私政策</a>
-
-					</label>  
-
-					<div id="register_tnc_error"></div>
-
-				</div>
-
-			</div>
 
 			<div class="form-actions">
 
 				<button id="register-back-btn" type="button" class="btn">
 
-				<i class="m-icon-swapleft"></i>  返回
+				<i class="m-icon-swapleft"></i>  Back
 
 				</button>
 
 				<button type="submit" id="register-submit-btn" class="btn blue pull-right">
 
-					注册 <i class="m-icon-swapright m-icon-white"></i>
+				注册<i class="m-icon-swapright m-icon-white"></i>
 
 				</button>            
 
 			</div>
 
-		</form>
+		<!-- BEGIN FORGOT PASSWORD FORM -->
 
+		
 		<!-- END REGISTRATION FORM -->
-
+</form>
 	</div>
 
 	<!-- END LOGIN -->
@@ -380,7 +220,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="copyright">
 
-		2014 &copy; HITSunday
+		2015 &copy;HitSunday.
 
 	</div>
 
@@ -434,11 +274,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- END PAGE LEVEL SCRIPTS --> 
 
-	 <script>
+	<script>
 
 		jQuery(document).ready(function() {     
 
 		  App.init();
+
 		  Login.init();
 
 		});

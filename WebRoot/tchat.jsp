@@ -88,7 +88,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!-- BEGIN LOGO -->
 
-				<a class="brand" href="../t_index.jsp"> 工大约约约 </a>
+				<a class="brand" href="<%=basePath %>chat/tviewunreadchat.action"> <img
+					src="<%=basePath %>media/image/logo.png" alt="logo" />
+
+				</a>
 
 				<!-- END LOGO -->
 
@@ -185,12 +188,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						class="arrow "></span>
 
 				</a></li>
-				<li class=""><a href="<%=basePath%>tprofile.jsp"> <i
+				<li class=""><a href="<%=basePath%>jdbc/tviewprofile?ttid=<%=session.getAttribute("teacherId") %>"> <i
 						class="icon-file-text"></i> <span class="title">我的信息</span> <span
 						class="arrow "></span>
 
 				</a></li>
-				<li class="active "><a href=""> <i class="icon-user"></i> <span
+				<li class="active "><a href="#"> <i class="icon-user"></i> <span
 						class="title">畅所欲言</span> <span class="selected"></span> <span
 						class="arrow open"></span>
 
